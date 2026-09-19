@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RO Curriculum Skill Tree - ระบบออกแบบผังรายวิชาหลักสูตร ป.ตรี</title>
+  <title>Curriculum Tree Designer - ระบบออกแบบผังความสัมพันธ์รายวิชา หลักสูตร ป.ตรี</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Kanit:wght@400;600&family=VT323&display=swap" rel="stylesheet">
@@ -533,6 +533,28 @@
       flex-shrink: 0;
     }
 
+    .ro-track-row-del {
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .ro-track-row-del:hover {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+    }
+
     .ro-add-track-section {
       background: #0d1525;
       border: 1px dashed #24344d;
@@ -718,7 +740,12 @@
       z-index: 5;
     }
 
+    svg.ro-connections-svg path {
+      fill: none !important;
+    }
+
     svg.ro-connections-svg path.hit-area {
+      fill: none !important;
       pointer-events: stroke;
       cursor: pointer;
       stroke: transparent;
@@ -726,6 +753,7 @@
     }
 
     svg.ro-connections-svg path.visible-line {
+      fill: none !important;
       pointer-events: none;
       transition: stroke-width 0.15s;
     }
@@ -1437,13 +1465,13 @@
 </head>
 <body>
 
-  <!-- Top Window Header (Ragnarok Classic Style) -->
+  <!-- Top Window Header -->
   <header class="ro-topbar">
     <div class="ro-branding">
-      <div class="ro-emblem" title="Ragnarok Skill Tree">⚔️</div>
+      <div class="ro-emblem" title="ระบบออกแบบผังความสัมพันธ์รายวิชา">⚔️</div>
       <div class="ro-title-group">
-        <h1>RO Curriculum Skill Tree <span>[ระบบผังวิชา ป.ตรี]</span></h1>
-        <p>ออกแบบเส้นทางรายวิชาและการเชื่อมโยงความรู้สไตล์ Ragnarok Online</p>
+        <h1>Curriculum Tree Designer <span>[ระบบออกแบบผังวิชา ป.ตรี]</span></h1>
+        <p>ผังโครงสร้างความสัมพันธ์รายวิชาและวิชาบังคับก่อนระดับปริญญาตรี</p>
       </div>
     </div>
 
@@ -1470,10 +1498,10 @@
       <button class="ro-btn" id="btnResetDemo" title="คืนค่าข้อมูลตัวอย่างตั้งต้น">
         <span>🔄 คืนค่าตัวอย่าง</span>
       </button>
-      <button class="ro-btn ro-btn-icon" id="btnToggleSound" title="เปิด/ปิดเสียง RO">
+      <button class="ro-btn ro-btn-icon" id="btnToggleSound" title="เปิด/ปิดเสียงเอฟเฟกต์ (Sound FX)">
         <span id="soundIcon">🔊</span>
       </button>
-      <button class="ro-btn ro-btn-icon" id="btnHelp" title="วิธีใช้งาน">
+      <button class="ro-btn ro-btn-icon" id="btnHelp" title="คำแนะนำการใช้งาน">
         <span>❓</span>
       </button>
     </div>
@@ -1490,7 +1518,7 @@
       </button>
 
       <div class="ro-sidebar-header">
-        <h2>📜 สายวิชาการเรียน (Job Class)</h2>
+        <h2>📜 แผนการเรียนและสายวิชา</h2>
         <p>เลือกโหมดผังวิชาศึกษาทั่วไป หรือ วิชาหลักสูตร</p>
       </div>
 
@@ -1512,7 +1540,7 @@
         <!-- Status Card (สไตล์ Status Window ใน RO) -->
         <div class="ro-box">
           <div class="ro-box-title">
-            <span>📊 ข้อมูลสรุปหลักสูตร (Status)</span>
+            <span>📊 ข้อมูลสรุปหลักสูตร (Summary)</span>
             <span style="color: #64748b; font-size: 10px;" id="currentTabLabel">วิชาหลักสูตร</span>
           </div>
           <div class="ro-stat-grid">
@@ -1538,7 +1566,7 @@
         <!-- Connection Lines Rule (สัญลักษณ์เส้น 3 แบบตามโจทย์) -->
         <div class="ro-box">
           <div class="ro-box-title">
-            <span>⚡ สัญลักษณ์เส้นเชื่อม (Skill Link)</span>
+            <span>⚡ สัญลักษณ์เส้นเชื่อมโยงรายวิชา (Prerequisites)</span>
           </div>
           <div class="ro-legend-list">
             
@@ -1767,7 +1795,7 @@
   <div class="ro-modal-backdrop" id="helpModal">
     <div class="ro-modal-window" style="width: 520px;">
       <div class="ro-modal-header">
-        <h3>❓ คำแนะนำการใช้งานระบบผังวิชา Ragnarok</h3>
+        <h3>❓ คำแนะนำการใช้งานระบบผังความสัมพันธ์รายวิชา</h3>
         <button class="ro-modal-close-btn" id="btnHelpModalClose">✕</button>
       </div>
       <div class="ro-modal-body" style="font-size: 12px; line-height: 1.6; color: #cbd5e1; max-height: 70vh; overflow-y: auto;">
@@ -2335,6 +2363,7 @@
             <input type="color" class="ro-track-row-color" value="${track.color}" title="คลิกเปลี่ยนสีหมวด ${escapeHtml(track.name)}" data-track-name="${escapeHtml(track.name)}">
             <span class="ro-track-row-name" title="${escapeHtml(track.name)}">${escapeHtml(track.name)}</span>
             <span class="ro-track-row-count">${courseCount} วิชา</span>
+            <button class="ro-track-row-del" data-track-name="${escapeHtml(track.name)}" title="ลบหมวด ${escapeHtml(track.name)}">✕</button>
           </div>
         `;
       }).join('');
@@ -2346,6 +2375,46 @@
           setTrackColor(trackName, newColor);
         });
       });
+
+      container.querySelectorAll('.ro-track-row-del').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const trackName = btn.getAttribute('data-track-name');
+          deleteTrack(trackName);
+        });
+      });
+    }
+
+    function deleteTrack(trackName) {
+      const tracks = getAllTracks();
+      if (tracks.length <= 1) {
+        alert('ไม่สามารถลบหมวดสายวิชาทั้งหมดได้ ต้องมีอย่างน้อย 1 หมวด');
+        return;
+      }
+
+      const allCourses = [...(appState.major?.courses || []), ...(appState.ge?.courses || [])];
+      const usedCourses = allCourses.filter(c => (c.track || '').trim().toLowerCase() === trackName.toLowerCase());
+
+      const fallback = tracks.find(t => t.name.toLowerCase() !== trackName.toLowerCase());
+
+      if (usedCourses.length > 0) {
+        if (!confirm(`ต้องการลบหมวดสายวิชา "${trackName}" ใช่หรือไม่?\n(มี ${usedCourses.length} รายวิชาในหมวดนี้ จะถูกเปลี่ยนไปอยู่หมวด "${fallback.name}" โดยอัตโนมัติ)`)) {
+          return;
+        }
+        usedCourses.forEach(c => {
+          c.track = fallback.name;
+          c.color = fallback.color;
+        });
+      } else {
+        if (!confirm(`ต้องการลบหมวดสายวิชา "${trackName}" ใช่หรือไม่?`)) {
+          return;
+        }
+      }
+
+      appState.tracks = tracks.filter(t => t.name.toLowerCase() !== trackName.toLowerCase());
+      saveToStorage();
+      render();
+      roSound.playDelete();
     }
 
     function setTrackColor(trackName, newColor) {
@@ -2697,6 +2766,7 @@
         const hitPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         hitPath.setAttribute('d', pathD);
         hitPath.setAttribute('class', 'hit-area');
+        hitPath.setAttribute('fill', 'none');
 
         // Visible Line
         const linePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
