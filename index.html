@@ -234,9 +234,9 @@
     .ro-sidebar-toggle-btn {
       position: absolute;
       top: 50%;
-      right: -28px;
+      left: 280px;
       transform: translateY(-50%);
-      width: 28px;
+      width: 26px;
       height: 76px;
       background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
       border: 2px solid #ffd166;
@@ -249,9 +249,9 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 60;
+      z-index: 1000;
       box-shadow: 4px 0 14px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 209, 102, 0.35);
-      transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1), background 0.15s, border-color 0.15s, width 0.15s;
       user-select: none;
       padding: 0;
       outline: none;
@@ -261,8 +261,7 @@
       background: linear-gradient(180deg, #2a3d5b 0%, #1a273b 100%);
       color: #ffffff;
       border-color: #38bdf8;
-      width: 32px;
-      right: -32px;
+      width: 30px;
       box-shadow: 6px 0 18px rgba(56, 189, 248, 0.5), 0 0 12px rgba(56, 189, 248, 0.4);
     }
 
@@ -270,8 +269,9 @@
       transform: translateY(-50%) scale(0.93);
     }
 
-    /* Pulsing glow when collapsed to invite user to expand */
-    aside.ro-sidebar.collapsed .ro-sidebar-toggle-btn {
+    /* Pulsing glow when collapsed to invite user to expand (explicitly at left: 0 of screen) */
+    .ro-sidebar-toggle-btn.collapsed {
+      left: 0 !important;
       border-color: #38bdf8;
       color: #38bdf8;
       animation: sidebarPulseGlow 2s infinite;
@@ -1514,7 +1514,7 @@
 
     <!-- Editable Curriculum Title -->
     <div>
-      <input type="text" id="curriculumTitleInput" class="ro-curriculum-name-input" value="หลักสูตรวิทยาศาสตรบัณฑิต เทคโนโลยีสารสนเทศและคลาวด์ พ.ศ. 2569" title="คลิกเพื่อแก้ไขชื่อหลักสูตร">
+      <input type="text" id="curriculumTitleInput" class="ro-curriculum-name-input" value="Computer Engineering" title="คลิกเพื่อแก้ไขชื่อหลักสูตร">
     </div>
 
     <!-- Actions Toolbar -->
@@ -1549,10 +1549,6 @@
     
     <!-- Left Sidebar: RO Job Selector & Control -->
     <aside class="ro-sidebar" id="leftSidebar">
-      <!-- Collapsible Toggle Button (ตรงกลางขอบขวาของแถบซ้าย) -->
-      <button class="ro-sidebar-toggle-btn" id="btnToggleSidebar" title="ซ่อนแถบเมนูด้านซ้าย (คลิกเพื่อหุบเข้า)">
-        <span id="sidebarToggleIcon">◀</span>
-      </button>
 
       <div class="ro-sidebar-header">
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
@@ -1605,6 +1601,36 @@
           </div>
         </div>
 
+        <!-- Track Categories (หมวดสายวิชา - วางไว้ด้านบน เด่นชัดและเข้าถึงง่าย) -->
+        <div class="ro-box" id="trackManagerBox">
+          <div class="ro-box-title" style="display: flex; justify-content: space-between; align-items: center;">
+            <span>🎨 หมวดสายวิชา (Tracks)</span>
+            <span class="badge" id="trackCountLabel" style="background: #334155; color: #ffd166; font-size: 11px; font-weight: 700;">0 หมวด</span>
+          </div>
+
+          <!-- Add New Track Form (เด่นชัด อยู่ด้านบนสุด) -->
+          <div class="ro-add-track-section" style="background: rgba(30, 41, 59, 0.85); border: 1.5px solid #38bdf8; border-radius: 6px; padding: 8px; margin: 8px 0;">
+            <div style="font-size: 11px; font-weight: 700; color: #38bdf8; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;">
+              <span>➕ เพิ่มหมวดสายวิชาใหม่</span>
+              <span style="font-size: 10px; color: #94a3b8; font-weight: 400;">(พิมพ์ชื่อแล้วกดปุ่มเพิ่มหรือ Enter)</span>
+            </div>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <input type="color" id="newTrackColor" value="#06b6d4" title="คลิกเลือกสีประจำหมวด" class="ro-track-color-input" style="width: 34px; height: 30px; padding: 1px; border: 1px solid #64748b; border-radius: 4px; cursor: pointer; background: #0f172a;">
+              <input type="text" id="newTrackName" placeholder="เช่น Hardware, AI, DevOps..." class="ro-track-name-input" style="flex: 1; padding: 5px 8px; font-size: 12px; background: #0f172a; border: 1px solid #475569; color: #f8fafc; border-radius: 4px;">
+              <button id="btnAddNewTrack" class="ro-btn ro-btn-primary" style="padding: 5px 12px; font-size: 11px; font-weight: 700; white-space: nowrap; background: #0284c7; border: 1px solid #38bdf8; box-shadow: 0 2px 6px rgba(2,132,199,0.4);">➕ เพิ่ม</button>
+            </div>
+          </div>
+
+          <p style="font-size: 10px; color: #94a3b8; margin: 4px 0 6px 0; line-height: 1.3;">
+            คลิกที่สีเพื่อเปลี่ยนสีประจำหมวด (สีของวิชาทั้งหมดจะเปลี่ยนตาม) หรือกด ✕ เพื่อลบ
+          </p>
+
+          <!-- Dynamic Track List -->
+          <div class="ro-track-manage-list" id="trackManageList">
+            <!-- Rendered by renderTrackList() -->
+          </div>
+        </div>
+
         <!-- Connection Lines Rule (สัญลักษณ์เส้น 3 แบบตามโจทย์) -->
         <div class="ro-box">
           <div class="ro-box-title">
@@ -1648,41 +1674,20 @@
           </div>
         </div>
 
-        <!-- Track Categories (หมวดสายวิชา) -->
-        <div class="ro-box" id="trackManagerBox">
-          <div class="ro-box-title" style="display: flex; justify-content: space-between; align-items: center;">
-            <span>🎨 หมวดสายวิชา (Tracks)</span>
-            <span style="font-size: 10px; color: #94a3b8;" id="trackCountLabel">0 หมวด</span>
-          </div>
-          <p style="font-size: 10px; color: #94a3b8; margin: 4px 0 8px 0; line-height: 1.3;">
-            คลิกที่สีเพื่อเปลี่ยนสีประจำหมวด (สีของรายวิชาทั้งหมดในหมวดนี้จะเปลี่ยนตามทันที)
-          </p>
-
-          <!-- Dynamic Track List -->
-          <div class="ro-track-manage-list" id="trackManageList">
-            <!-- Rendered by renderTrackList() -->
-          </div>
-
-          <!-- Add New Track Form -->
-          <div class="ro-add-track-section">
-            <div style="font-size: 11px; font-weight: 600; color: #cbd5e1; margin-bottom: 6px;">➕ เพิ่มหมวดสายวิชาใหม่</div>
-            <div style="display: flex; gap: 6px; align-items: center;">
-              <input type="color" id="newTrackColor" value="#ec4899" title="เลือกสีหมวดสายวิชา" class="ro-track-color-input">
-              <input type="text" id="newTrackName" placeholder="เช่น DevOps, AI" class="ro-track-name-input">
-              <button id="btnAddNewTrack" class="ro-btn ro-btn-secondary" style="padding: 4px 10px; font-size: 11px; white-space: nowrap;">เพิ่ม</button>
-            </div>
-          </div>
-        </div>
-
       </div>
     </aside>
+
+    <!-- Persistent Floating Toggle Button (อยู่ตรงขอบแถบซ้าย และคงอยู่ขอบจอเมื่อซ่อน) -->
+    <button class="ro-sidebar-toggle-btn" id="btnToggleSidebar" title="ซ่อนแถบเมนูด้านซ้าย (คลิกเพื่อหุบเข้า)">
+      <span id="sidebarToggleIcon">◀</span>
+    </button>
 
     <!-- Center Canvas: 3 Columns Skill Tree -->
     <main class="ro-canvas-area" id="canvasArea">
 
       <!-- Print Banner (Visible only in print mode) -->
       <div class="print-banner">
-        <h1 id="printCurriculumTitle">หลักสูตรวิทยาศาสตรบัณฑิต เทคโนโลยีสารสนเทศและคลาวด์ พ.ศ. 2569</h1>
+        <h1 id="printCurriculumTitle">Computer Engineering</h1>
         <p id="printSubTitle">แผนภาพโครงสร้างความสัมพันธ์รายวิชา (Curriculum Skill & Prerequisite Tree) | โหมด: วิชาหลักสูตร</p>
       </div>
 
@@ -1964,7 +1969,7 @@
        DATA MODEL & DEFAULT PRESETS (4 Ports: top, bottom, left, right)
        ================================================================= */
     const DEFAULT_DATA = {
-      curriculumTitle: "หลักสูตรวิทยาศาสตรบัณฑิต เทคโนโลยีสารสนเทศและคลาวด์ พ.ศ. 2569",
+      curriculumTitle: "Computer Engineering",
       activeTab: "major", // "major" or "ge"
       major: {
         courses: [
@@ -2506,11 +2511,12 @@
       function toggleSidebar() {
         sidebar.classList.toggle('collapsed');
         const isCollapsed = sidebar.classList.contains('collapsed');
+        if (toggleBtn) {
+          toggleBtn.classList.toggle('collapsed', isCollapsed);
+          toggleBtn.setAttribute('title', isCollapsed ? 'แสดงแถบเมนู (คลิกเพื่อขยายออก)' : 'ซ่อนแถบเมนู (คลิกเพื่อหุบเข้าด้านซ้าย)');
+        }
         if (icon) {
           icon.textContent = isCollapsed ? '▶' : '◀';
-        }
-        if (toggleBtn) {
-          toggleBtn.setAttribute('title', isCollapsed ? 'แสดงแถบเมนู (คลิกเพื่อขยายออก)' : 'ซ่อนแถบเมนู (คลิกเพื่อหุบเข้าด้านซ้าย)');
         }
         roSound.playClick();
       }
@@ -2562,6 +2568,12 @@
         } catch (e) {
           appState = JSON.parse(JSON.stringify(DEFAULT_DATA));
         }
+      }
+
+      // Auto-migrate title from old default to Computer Engineering
+      if (!appState.curriculumTitle || appState.curriculumTitle.includes('เทคโนโลยีสารสนเทศและคลาวด์')) {
+        appState.curriculumTitle = 'Computer Engineering';
+        saveToStorage();
       }
 
       curriculumTitleInput.value = appState.curriculumTitle || DEFAULT_DATA.curriculumTitle;
