@@ -1514,7 +1514,7 @@
 
     <!-- Editable Curriculum Title -->
     <div>
-      <input type="text" id="curriculumTitleInput" class="ro-curriculum-name-input" value="หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์ (หลักสูตรปรับปรุง พ.ศ. 2567)" title="คลิกเพื่อแก้ไขชื่อหลักสูตร">
+      <input type="text" id="curriculumTitleInput" class="ro-curriculum-name-input" value="หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์ (วศ.บ. 2567)" title="คลิกเพื่อแก้ไขชื่อหลักสูตร">
     </div>
 
     <!-- Actions Toolbar -->
@@ -1969,789 +1969,853 @@
        DATA MODEL & DEFAULT PRESETS (4 Ports: top, bottom, left, right)
        ================================================================= */
     const DEFAULT_DATA = {
-      "curriculumTitle": "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์ (หลักสูตรปรับปรุง พ.ศ. 2567)",
+      "curriculumTitle": "หลักสูตรวิศวกรรมศาสตรบัณฑิต สาขาวิชาวิศวกรรมคอมพิวเตอร์ (วศ.บ. 2567)",
       "activeTab": "major",
       "major": {
         "courses": [
           {
-            "id": "cpe-net1",
-            "code": "9061071",
-            "nameTh": "เครือข่ายเบื้องต้น (CCNA1)",
-            "nameEn": "Introduction to Networks (CCNA1)",
-            "credits": "3(2-2-5)",
-            "track": "Network",
-            "color": "#0284c7",
-            "x": 60,
-            "y": 80,
-            "level": 1
-          },
-          {
-            "id": "cpe-net2",
-            "code": "9061072",
-            "nameTh": "การค้นหาและเลือกเส้นทางในเครือข่าย (CCNA2)",
-            "nameEn": "Routing and Switching Essentials (CCNA2)",
-            "credits": "3(2-2-5)",
-            "track": "Network",
-            "color": "#0284c7",
-            "x": 520,
-            "y": 80,
-            "level": 2
-          },
-          {
-            "id": "cpe-net3",
-            "code": "9062071",
-            "nameTh": "ระบบเครือข่ายองค์กรและความปลอดภัย (CCNA3)",
-            "nameEn": "Enterprise Networking, Security, & Automation",
-            "credits": "3(2-2-5)",
-            "track": "Network",
-            "color": "#0284c7",
-            "x": 980,
-            "y": 80,
-            "level": 3
-          },
-          {
-            "id": "cpe-netlab",
-            "code": "9062073",
-            "nameTh": "ปฏิบัติการเครือข่าย 1",
-            "nameEn": "Network Laboratory 1",
-            "credits": "3(2-2-5)",
-            "track": "Network",
-            "color": "#0284c7",
-            "x": 520,
-            "y": 220,
-            "level": 2
-          },
-          {
-            "id": "cpe-netdesign",
-            "code": "9063071",
-            "nameTh": "การออกแบบระบบเครือข่าย",
-            "nameEn": "Network System Design",
-            "credits": "3(2-2-5)",
-            "track": "Network",
-            "color": "#0284c7",
-            "x": 980,
-            "y": 220,
-            "level": 3
-          },
-          {
-            "id": "cpe-wireless",
-            "code": "9062072",
-            "nameTh": "เครือข่ายไร้สาย (CCNA Wireless)",
-            "nameEn": "Wireless Networks (CCNA Wireless)",
-            "credits": "3(2-2-5)",
-            "track": "Network",
-            "color": "#0284c7",
-            "x": 520,
-            "y": 360,
-            "level": 2
-          },
-          {
-            "id": "cpe-sec1",
-            "code": "9062031",
-            "nameTh": "ความปลอดภัยระบบคอมพิวเตอร์และเครือข่าย",
-            "nameEn": "Computer Network Security (CCNA Security)",
-            "credits": "3(2-2-5)",
-            "track": "Security",
-            "color": "#ef4444",
-            "x": 520,
-            "y": 500,
-            "level": 2
-          },
-          {
-            "id": "cpe-firewall",
-            "code": "9063031",
-            "nameTh": "ความปลอดภัยของไฟร์วอลล์",
-            "nameEn": "Firewall Security",
-            "credits": "3(2-2-5)",
-            "track": "Security",
-            "color": "#ef4444",
-            "x": 980,
-            "y": 380,
-            "level": 3
-          },
-          {
-            "id": "cpe-hacking",
-            "code": "9063032",
-            "nameTh": "การเจาะระบบอย่างมีจรรยาบรรณ",
-            "nameEn": "Ethical Hacking",
-            "credits": "3(2-2-5)",
-            "track": "Security",
-            "color": "#ef4444",
-            "x": 980,
-            "y": 520,
-            "level": 3
-          },
-          {
             "id": "cpe-prog",
-            "code": "9062081",
+            "code": "9061401",
             "nameTh": "การเขียนโปรแกรมคอมพิวเตอร์",
             "nameEn": "Computer Programming",
             "credits": "3(2-2-5)",
-            "track": "Software",
+            "track": "Software & Data",
             "color": "#10b981",
             "x": 60,
-            "y": 660,
+            "y": 80,
             "level": 1
           },
           {
-            "id": "cpe-dsa",
-            "code": "9061021",
-            "nameTh": "โครงสร้างข้อมูลและอัลกอริทึม",
-            "nameEn": "Data Structure and Algorithms",
+            "id": "cpe-oop",
+            "code": "9061402",
+            "nameTh": "การเขียนโปรแกรมเชิงวัตถุและโครงสร้างข้อมูล",
+            "nameEn": "Object-Oriented Programming and Data Structures",
             "credits": "3(2-2-5)",
-            "track": "Software",
+            "track": "Software & Data",
             "color": "#10b981",
-            "x": 520,
-            "y": 660,
-            "level": 2
-          },
-          {
-            "id": "cpe-swe",
-            "code": "9063103",
-            "nameTh": "วิศวกรรมซอฟต์แวร์",
-            "nameEn": "Software Engineer",
-            "credits": "3(2-2-5)",
-            "track": "Software",
-            "color": "#10b981",
-            "x": 980,
-            "y": 660,
-            "level": 3
+            "x": 60,
+            "y": 210,
+            "level": 1
           },
           {
             "id": "cpe-db",
-            "code": "9062042",
-            "nameTh": "ระบบฐานข้อมูล",
-            "nameEn": "Database Systems",
+            "code": "9061403",
+            "nameTh": "ระบบฐานข้อมูลและวิศวกรรมข้อมูล",
+            "nameEn": "Database Systems and Data Engineering",
             "credits": "3(2-2-5)",
-            "track": "Software",
+            "track": "Software & Data",
             "color": "#10b981",
-            "x": 520,
-            "y": 800,
-            "level": 2
+            "x": 60,
+            "y": 340,
+            "level": 1
           },
           {
-            "id": "cpe-web",
-            "code": "9063131",
-            "nameTh": "การออกแบบและพัฒนาเว็บแอพพลิเคชั่น",
-            "nameEn": "Web Applications Design and Development",
+            "id": "cpe-logic",
+            "code": "9061201",
+            "nameTh": "การออกแบบวงจรลอจิกดิจิทัล",
+            "nameEn": "Digital Logic Design",
             "credits": "3(2-2-5)",
-            "track": "Software",
-            "color": "#10b981",
-            "x": 980,
-            "y": 800,
-            "level": 3
-          },
-          {
-            "id": "cpe-netprog",
-            "code": "9062082",
-            "nameTh": "การเขียนโปรแกรมเครือข่าย",
-            "nameEn": "Network Programming",
-            "credits": "3(2-2-5)",
-            "track": "Software",
-            "color": "#10b981",
-            "x": 520,
-            "y": 940,
-            "level": 2
-          },
-          {
-            "id": "cpe-digital",
-            "code": "9061041",
-            "nameTh": "พื้นฐานระบบดิจิทัล",
-            "nameEn": "Digital System Fundamentals",
-            "credits": "3(2-2-5)",
-            "track": "Hardware / IoT",
+            "track": "Hardware & IoT",
             "color": "#f59e0b",
             "x": 60,
-            "y": 980,
+            "y": 470,
             "level": 1
           },
           {
             "id": "cpe-circuit",
-            "code": "9062041",
+            "code": "9061202",
             "nameTh": "การวิเคราะห์วงจรไฟฟ้าและอิเล็กทรอนิกส์",
             "nameEn": "Electrical Circuit Analysis and Electronics",
             "credits": "3(2-2-5)",
-            "track": "Hardware / IoT",
+            "track": "Hardware & IoT",
             "color": "#f59e0b",
-            "x": 520,
-            "y": 1100,
-            "level": 2
-          },
-          {
-            "id": "cpe-os",
-            "code": "9062052",
-            "nameTh": "ระบบปฏิบัติการ",
-            "nameEn": "Operating Systems",
-            "credits": "3(2-2-5)",
-            "track": "Hardware / IoT",
-            "color": "#f59e0b",
-            "x": 520,
-            "y": 1240,
-            "level": 2
-          },
-          {
-            "id": "cpe-embed",
-            "code": "9063052",
-            "nameTh": "ระบบสมองกลฝังตัว",
-            "nameEn": "Embedded Systems",
-            "credits": "3(2-2-5)",
-            "track": "Hardware / IoT",
-            "color": "#f59e0b",
-            "x": 980,
-            "y": 1100,
-            "level": 3
-          },
-          {
-            "id": "cpe-iot",
-            "code": "9063053",
-            "nameTh": "การโปรแกรมสำหรับอินเทอร์เน็ตในทุกสรรพสิ่ง",
-            "nameEn": "Programming for Internet of Everything (IoE)",
-            "credits": "3(2-2-5)",
-            "track": "Hardware / IoT",
-            "color": "#f59e0b",
-            "x": 980,
-            "y": 1240,
-            "level": 3
-          },
-          {
-            "id": "cpe-math",
-            "code": "9061061",
-            "nameTh": "คณิตศาสตร์ทางวิศวกรรมคอมพิวเตอร์",
-            "nameEn": "Computer Engineering Mathematics",
-            "credits": "3(2-2-5)",
-            "track": "Core & Project",
-            "color": "#64748b",
             "x": 60,
-            "y": 1380,
+            "y": 600,
+            "level": 1
+          },
+          {
+            "id": "cpe-arch-os",
+            "code": "9061203",
+            "nameTh": "สถาปัตยกรรมคอมพิวเตอร์ และระบบปฏิบัติการ",
+            "nameEn": "Computer Architecture & Operating Systems",
+            "credits": "3(2-2-5)",
+            "track": "Hardware & IoT",
+            "color": "#f59e0b",
+            "x": 60,
+            "y": 730,
             "level": 1
           },
           {
             "id": "cpe-discrete",
-            "code": "9062061",
-            "nameTh": "ดีสครีตและทฤษฎีการคำนวณ",
-            "nameEn": "Discrete Mathematics and Calculation Theory",
+            "code": "9061102",
+            "nameTh": "คณิตศาสตร์ดีสครีตและทฤษฎีการคำนวณ",
+            "nameEn": "Discrete Mathematics and Theory of Computation",
+            "credits": "3(2-2-5)",
+            "track": "Core & Project",
+            "color": "#64748b",
+            "x": 60,
+            "y": 860,
+            "level": 1
+          },
+          {
+            "id": "cpe-math1",
+            "code": "9061104",
+            "nameTh": "คณิตศาสตร์สำหรับวิศวกรรมคอมพิวเตอร์ 1",
+            "nameEn": "Mathematics for Computer Engineering 1",
+            "credits": "3(2-2-5)",
+            "track": "Core & Project",
+            "color": "#64748b",
+            "x": 60,
+            "y": 990,
+            "level": 1
+          },
+          {
+            "id": "cpe-infra",
+            "code": "9061103",
+            "nameTh": "การออกแบบโครงสร้างพื้นฐานวิศวกรรมคอมพิวเตอร์",
+            "nameEn": "Computer Engineering Infrastructure Design",
+            "credits": "3(2-2-5)",
+            "track": "Core & Project",
+            "color": "#64748b",
+            "x": 60,
+            "y": 1120,
+            "level": 1
+          },
+          {
+            "id": "cpe-eng-cpe",
+            "code": "9061101",
+            "nameTh": "ภาษาอังกฤษสำหรับวิศวกรคอมพิวเตอร์",
+            "nameEn": "English for Computer Engineers (เลือกเสรี 1)",
+            "credits": "3(3-0-6)",
+            "track": "Core & Project",
+            "color": "#64748b",
+            "x": 60,
+            "y": 1250,
+            "level": 1
+          },
+          {
+            "id": "cpe-algo",
+            "code": "9062401",
+            "nameTh": "อัลกอริทึม",
+            "nameEn": "Algorithms",
+            "credits": "3(2-2-5)",
+            "track": "Software & Data",
+            "color": "#10b981",
+            "x": 520,
+            "y": 80,
+            "level": 2
+          },
+          {
+            "id": "cpe-swe",
+            "code": "9062402",
+            "nameTh": "วิศวกรรมซอฟต์แวร์",
+            "nameEn": "Software Engineering",
+            "credits": "3(2-2-5)",
+            "track": "Software & Data",
+            "color": "#10b981",
+            "x": 520,
+            "y": 210,
+            "level": 2
+          },
+          {
+            "id": "cpe-embedded",
+            "code": "9062201",
+            "nameTh": "ระบบสมองกลฝังตัวและไอโอที",
+            "nameEn": "Embedded Systems and IoT",
+            "credits": "3(2-2-5)",
+            "track": "Hardware & IoT",
+            "color": "#f59e0b",
+            "x": 520,
+            "y": 470,
+            "level": 2
+          },
+          {
+            "id": "cpe-prob-stat",
+            "code": "9062101",
+            "nameTh": "ความน่าจะเป็นและสถิติสำหรับวิศวกรรมคอมพิวเตอร์",
+            "nameEn": "Probability and Statistics for Computer Engineering",
             "credits": "3(2-2-5)",
             "track": "Core & Project",
             "color": "#64748b",
             "x": 520,
-            "y": 1380,
+            "y": 860,
             "level": 2
           },
           {
-            "id": "cpe-ml",
-            "code": "9062102",
-            "nameTh": "การเรียนรู้ของเครื่องสำหรับเครือข่ายและคลาวด์",
-            "nameEn": "Machine Learning for Network & Cloud",
+            "id": "cpe-ai-ml",
+            "code": "9062503",
+            "nameTh": "ปัญญาประดิษฐ์และการเรียนรู้ของเครื่อง",
+            "nameEn": "Artificial Intelligence and Machine Learning",
             "credits": "3(2-2-5)",
-            "track": "Cloud & AI",
+            "track": "AI & Data",
             "color": "#8b5cf6",
+            "x": 520,
+            "y": 990,
+            "level": 2
+          },
+          {
+            "id": "cpe-net",
+            "code": "9062301",
+            "nameTh": "เครือข่ายคอมพิวเตอร์",
+            "nameEn": "Computer Networks",
+            "credits": "3(2-2-5)",
+            "track": "Network",
+            "color": "#0284c7",
+            "x": 520,
+            "y": 1120,
+            "level": 2
+          },
+          {
+            "id": "cpe-net-lab",
+            "code": "9062302",
+            "nameTh": "ปฏิบัติการเครือข่ายคอมพิวเตอร์",
+            "nameEn": "Computer Networks Laboratory (ปฏิบัติการ network)",
+            "credits": "3(2-2-5)",
+            "track": "Network",
+            "color": "#0284c7",
+            "x": 520,
+            "y": 1250,
+            "level": 2
+          },
+          {
+            "id": "cpe-cloud-devops",
+            "code": "9062501",
+            "nameTh": "การประมวลผลแบบคลาวด์และเดฟออปส์",
+            "nameEn": "Cloud Computing and DevOps",
+            "credits": "3(2-2-5)",
+            "track": "Cloud & DevOps",
+            "color": "#6366f1",
+            "x": 520,
+            "y": 1510,
+            "level": 2
+          },
+          {
+            "id": "cpe-sysadmin",
+            "code": "9062502",
+            "nameTh": "การดูแลระบบและการจัดการเซิร์ฟเวอร์",
+            "nameEn": "System Admin and Server Management",
+            "credits": "3(2-2-5)",
+            "track": "Cloud & DevOps",
+            "color": "#6366f1",
+            "x": 520,
+            "y": 1640,
+            "level": 2
+          },
+          {
+            "id": "cpe-sec-fund",
+            "code": "9062303",
+            "nameTh": "พื้นฐานความมั่นคงปลอดภัยไซเบอร์",
+            "nameEn": "Cybersecurity Fundamentals",
+            "credits": "3(2-2-5)",
+            "track": "Cybersecurity",
+            "color": "#ef4444",
+            "x": 520,
+            "y": 1770,
+            "level": 2
+          },
+          {
+            "id": "cpe-seminar",
+            "code": "9062601",
+            "nameTh": "สัมมนาวิศวกรรมคอมพิวเตอร์",
+            "nameEn": "Seminar in Computer Engineering (เลือกเสรี 2)",
+            "credits": "3(2-2-5)",
+            "track": "Core & Project",
+            "color": "#64748b",
+            "x": 520,
+            "y": 1900,
+            "level": 2
+          },
+          {
+            "id": "cpe-proj-mgmt",
+            "code": "9063601",
+            "nameTh": "การบริหารโครงการวิศวกรรม",
+            "nameEn": "Engineering Project Management",
+            "credits": "3(2-2-5)",
+            "track": "Core & Project",
+            "color": "#64748b",
+            "x": 980,
+            "y": 80,
+            "level": 3
+          },
+          {
+            "id": "cpe-proj1",
+            "code": "9063602",
+            "nameTh": "โครงงานวิศวกรรมคอมพิวเตอร์ 1",
+            "nameEn": "Computer Engineering Project I",
+            "credits": "3(2-2-5)",
+            "track": "Core & Project",
+            "color": "#64748b",
+            "x": 980,
+            "y": 210,
+            "level": 3
+          },
+          {
+            "id": "cpe-proj2",
+            "code": "9063603",
+            "nameTh": "โครงงานวิศวกรรมคอมพิวเตอร์ 2",
+            "nameEn": "Computer Engineering Project 2",
+            "credits": "3(2-2-5)",
+            "track": "Core & Project",
+            "color": "#64748b",
+            "x": 980,
+            "y": 340,
+            "level": 3
+          },
+          {
+            "id": "cpe-prep-field",
+            "code": "9063604",
+            "nameTh": "เตรียมความพร้อมปฏิบัติการวิชาชีพด้านคอมพิวเตอร์",
+            "nameEn": "Preparation of Field Experience in Computer",
+            "credits": "2(0-2-1)",
+            "track": "Core & Project",
+            "color": "#64748b",
+            "x": 980,
+            "y": 470,
+            "level": 3
+          },
+          {
+            "id": "cpe-field-exp",
+            "code": "9064601",
+            "nameTh": "การฝึกประสบการณ์วิชาชีพทางคอมพิวเตอร์",
+            "nameEn": "Field Experience in Computer (สหกิจศึกษา)",
+            "credits": "6(450)",
+            "track": "Core & Project",
+            "color": "#64748b",
+            "x": 980,
+            "y": 600,
+            "level": 3
+          },
+          {
+            "id": "cpe-routing",
+            "code": "9063301",
+            "nameTh": "การจัดเส้นทางและการสวิตช์",
+            "nameEn": "Routing and Switching",
+            "credits": "3(2-2-5)",
+            "track": "Network",
+            "color": "#0284c7",
+            "x": 980,
+            "y": 1120,
+            "level": 3
+          },
+          {
+            "id": "cpe-wireless",
+            "code": "9063302",
+            "nameTh": "เครือข่ายไร้สายและการสื่อสารเคลื่อนที่",
+            "nameEn": "Wireless and Mobile Networks",
+            "credits": "3(2-2-5)",
+            "track": "Network",
+            "color": "#0284c7",
+            "x": 980,
+            "y": 1250,
+            "level": 3
+          },
+          {
+            "id": "cpe-net-design",
+            "code": "9063303",
+            "nameTh": "การออกแบบเครือข่ายและวิศวกรรมสมรรถนะ",
+            "nameEn": "Network Design and Performance Engineering",
+            "credits": "3(2-2-5)",
+            "track": "Network",
+            "color": "#0284c7",
             "x": 980,
             "y": 1380,
             "level": 3
           },
           {
-            "id": "cpe-cloud",
-            "code": "9063091",
-            "nameTh": "การประมวลผลแบบคลาวด์",
-            "nameEn": "Cloud Computing",
+            "id": "cpe-virt-k8s",
+            "code": "9063501",
+            "nameTh": "เวอร์ชวลไลเซชัน คอนเทนเนอร์ และการประสานงานระบบ",
+            "nameEn": "Virtualization, Containers and Orchestration",
             "credits": "3(2-2-5)",
-            "track": "Cloud & AI",
-            "color": "#8b5cf6",
+            "track": "Cloud & DevOps",
+            "color": "#6366f1",
             "x": 980,
-            "y": 1520,
+            "y": 1510,
             "level": 3
           },
           {
-            "id": "cpe-datacenter",
-            "code": "9063102",
-            "nameTh": "การจัดการศูนย์ข้อมูล",
-            "nameEn": "Data Center Management",
+            "id": "cpe-net-sec",
+            "code": "9063304",
+            "nameTh": "ความมั่นคงปลอดภัยระบบและเครือข่าย",
+            "nameEn": "Network and System Security",
             "credits": "3(2-2-5)",
-            "track": "Cloud & AI",
-            "color": "#8b5cf6",
+            "track": "Cybersecurity",
+            "color": "#ef4444",
             "x": 980,
-            "y": 1660,
+            "y": 1640,
             "level": 3
           },
           {
-            "id": "cpe-drawing",
-            "code": "9061111",
-            "nameTh": "เขียนแบบวิศวกรรม",
-            "nameEn": "Engineering Drawing",
+            "id": "cpe-pentest",
+            "code": "9063305",
+            "nameTh": "ความมั่นคงปลอดภัยเชิงรุกและการทดสอบเจาะระบบ",
+            "nameEn": "Offensive Security and Penetration Testing",
             "credits": "3(2-2-5)",
-            "track": "Core & Project",
-            "color": "#64748b",
-            "x": 60,
-            "y": 1750,
-            "level": 1
-          },
-          {
-            "id": "cpe-ethics",
-            "code": "9061121",
-            "nameTh": "จรรยาบรรณและการเตรียมความพร้อมวิศวกรรม",
-            "nameEn": "Ethics and Readiness for Engineering",
-            "credits": "3(2-2-5)",
-            "track": "Core & Project",
-            "color": "#64748b",
-            "x": 60,
-            "y": 1900,
-            "level": 1
-          },
-          {
-            "id": "cpe-seminar",
-            "code": "9063121",
-            "nameTh": "สัมมนาทางวิศวกรรมคอมพิวเตอร์",
-            "nameEn": "Seminar in Computer Engineering",
-            "credits": "3(2-2-5)",
-            "track": "Core & Project",
-            "color": "#64748b",
+            "track": "Cybersecurity",
+            "color": "#ef4444",
             "x": 980,
-            "y": 1800,
-            "level": 3
-          },
-          {
-            "id": "cpe-project",
-            "code": "9063122",
-            "nameTh": "โครงการวิจัยทางวิศวกรรมคอมพิวเตอร์",
-            "nameEn": "Computer Engineering Research Project",
-            "credits": "3(2-2-5)",
-            "track": "Core & Project",
-            "color": "#64748b",
-            "x": 980,
-            "y": 1960,
-            "level": 3
-          },
-          {
-            "id": "cpe-coop",
-            "code": "9064999",
-            "nameTh": "สหกิจศึกษาทางวิศวกรรมคอมพิวเตอร์",
-            "nameEn": "Computer Engineering Cooperative Education",
-            "credits": "6(640)",
-            "track": "Core & Project",
-            "color": "#64748b",
-            "x": 980,
-            "y": 2120,
+            "y": 1770,
             "level": 3
           }
         ],
         "connections": [
           {
-            "id": "conn-cpe-1",
-            "fromNode": "cpe-net1",
-            "fromPort": "right",
-            "toNode": "cpe-net2",
-            "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-2",
-            "fromNode": "cpe-net2",
-            "fromPort": "right",
-            "toNode": "cpe-net3",
-            "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-3",
-            "fromNode": "cpe-net3",
+            "id": "conn-m1",
+            "from": "cpe-prog",
             "fromPort": "bottom",
-            "toNode": "cpe-netdesign",
+            "to": "cpe-oop",
             "toPort": "top",
-            "type": "orange",
-            "arrowDir": "forward"
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
           },
           {
-            "id": "conn-cpe-4",
-            "fromNode": "cpe-net1",
-            "fromPort": "bottom",
-            "toNode": "cpe-netlab",
+            "id": "conn-m2",
+            "from": "cpe-oop",
+            "fromPort": "right",
+            "to": "cpe-algo",
             "toPort": "left",
-            "type": "green",
-            "arrowDir": "forward"
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
           },
           {
-            "id": "conn-cpe-5",
-            "fromNode": "cpe-net2",
+            "id": "conn-m3",
+            "from": "cpe-oop",
+            "fromPort": "right",
+            "to": "cpe-swe",
+            "toPort": "left",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m4",
+            "from": "cpe-prog",
+            "fromPort": "right",
+            "to": "cpe-db",
+            "toPort": "left",
+            "type": "dashed",
+            "style": "advisory",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m5",
+            "from": "cpe-db",
+            "fromPort": "right",
+            "to": "cpe-ai-ml",
+            "toPort": "left",
+            "type": "dashed",
+            "style": "advisory",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m6",
+            "from": "cpe-logic",
             "fromPort": "bottom",
-            "toNode": "cpe-wireless",
+            "to": "cpe-arch-os",
             "toPort": "top",
-            "type": "blue",
-            "arrowDir": "forward"
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
           },
           {
-            "id": "conn-cpe-6",
-            "fromNode": "cpe-net2",
+            "id": "conn-m7",
+            "from": "cpe-circuit",
+            "fromPort": "right",
+            "to": "cpe-embedded",
+            "toPort": "left",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m8",
+            "from": "cpe-arch-os",
+            "fromPort": "right",
+            "to": "cpe-embedded",
+            "toPort": "left",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m9",
+            "from": "cpe-discrete",
+            "fromPort": "right",
+            "to": "cpe-algo",
+            "toPort": "left",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m10",
+            "from": "cpe-math1",
+            "fromPort": "right",
+            "to": "cpe-prob-stat",
+            "toPort": "left",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m11",
+            "from": "cpe-prob-stat",
             "fromPort": "bottom",
-            "toNode": "cpe-sec1",
+            "to": "cpe-ai-ml",
             "toPort": "top",
-            "type": "blue",
-            "arrowDir": "forward"
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
           },
           {
-            "id": "conn-cpe-7",
-            "fromNode": "cpe-sec1",
-            "fromPort": "right",
-            "toNode": "cpe-firewall",
-            "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-8",
-            "fromNode": "cpe-sec1",
-            "fromPort": "right",
-            "toNode": "cpe-hacking",
-            "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-9",
-            "fromNode": "cpe-prog",
-            "fromPort": "right",
-            "toNode": "cpe-dsa",
-            "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-10",
-            "fromNode": "cpe-dsa",
-            "fromPort": "right",
-            "toNode": "cpe-swe",
-            "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-11",
-            "fromNode": "cpe-prog",
+            "id": "conn-m12",
+            "from": "cpe-net",
             "fromPort": "bottom",
-            "toNode": "cpe-db",
-            "toPort": "left",
-            "type": "orange",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-12",
-            "fromNode": "cpe-db",
-            "fromPort": "right",
-            "toNode": "cpe-web",
-            "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-13",
-            "fromNode": "cpe-prog",
-            "fromPort": "bottom",
-            "toNode": "cpe-netprog",
-            "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-14",
-            "fromNode": "cpe-net1",
-            "fromPort": "bottom",
-            "toNode": "cpe-netprog",
+            "to": "cpe-net-lab",
             "toPort": "top",
-            "type": "green",
-            "arrowDir": "forward"
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
           },
           {
-            "id": "conn-cpe-15",
-            "fromNode": "cpe-digital",
+            "id": "conn-m13",
+            "from": "cpe-net",
             "fromPort": "right",
-            "toNode": "cpe-circuit",
+            "to": "cpe-routing",
             "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
           },
           {
-            "id": "conn-cpe-16",
-            "fromNode": "cpe-circuit",
-            "fromPort": "right",
-            "toNode": "cpe-embed",
-            "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-17",
-            "fromNode": "cpe-embed",
+            "id": "conn-m14",
+            "from": "cpe-routing",
             "fromPort": "bottom",
-            "toNode": "cpe-iot",
+            "to": "cpe-net-design",
             "toPort": "top",
-            "type": "orange",
-            "arrowDir": "forward"
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
           },
           {
-            "id": "conn-cpe-18",
-            "fromNode": "cpe-digital",
-            "fromPort": "bottom",
-            "toNode": "cpe-os",
-            "toPort": "left",
-            "type": "orange",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-19",
-            "fromNode": "cpe-math",
+            "id": "conn-m15",
+            "from": "cpe-routing",
             "fromPort": "right",
-            "toNode": "cpe-discrete",
+            "to": "cpe-wireless",
             "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
+            "type": "dashed",
+            "style": "advisory",
+            "arrow": "forward"
           },
           {
-            "id": "conn-cpe-20",
-            "fromNode": "cpe-discrete",
+            "id": "conn-m16",
+            "from": "cpe-net",
+            "fromPort": "bottom",
+            "to": "cpe-sec-fund",
+            "toPort": "top",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m17",
+            "from": "cpe-sec-fund",
             "fromPort": "right",
-            "toNode": "cpe-ml",
+            "to": "cpe-net-sec",
             "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
           },
           {
-            "id": "conn-cpe-21",
-            "fromNode": "cpe-net3",
-            "fromPort": "bottom",
-            "toNode": "cpe-cloud",
-            "toPort": "top",
-            "type": "green",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-22",
-            "fromNode": "cpe-cloud",
-            "fromPort": "bottom",
-            "toNode": "cpe-datacenter",
-            "toPort": "top",
-            "type": "orange",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-23",
-            "fromNode": "cpe-seminar",
-            "fromPort": "bottom",
-            "toNode": "cpe-project",
-            "toPort": "top",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "conn-cpe-24",
-            "fromNode": "cpe-ethics",
+            "id": "conn-m18",
+            "from": "cpe-sec-fund",
             "fromPort": "right",
-            "toNode": "cpe-coop",
+            "to": "cpe-pentest",
             "toPort": "left",
-            "type": "orange",
-            "arrowDir": "forward"
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m19",
+            "from": "cpe-net-sec",
+            "fromPort": "bottom",
+            "to": "cpe-pentest",
+            "toPort": "top",
+            "type": "solid",
+            "style": "elective_or",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m20",
+            "from": "cpe-arch-os",
+            "fromPort": "right",
+            "to": "cpe-sysadmin",
+            "toPort": "left",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m21",
+            "from": "cpe-net",
+            "fromPort": "right",
+            "to": "cpe-cloud-devops",
+            "toPort": "left",
+            "type": "dashed",
+            "style": "advisory",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m22",
+            "from": "cpe-cloud-devops",
+            "fromPort": "right",
+            "to": "cpe-virt-k8s",
+            "toPort": "left",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m23",
+            "from": "cpe-sysadmin",
+            "fromPort": "right",
+            "to": "cpe-virt-k8s",
+            "toPort": "left",
+            "type": "dashed",
+            "style": "advisory",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m24",
+            "from": "cpe-swe",
+            "fromPort": "right",
+            "to": "cpe-proj-mgmt",
+            "toPort": "left",
+            "type": "dashed",
+            "style": "advisory",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m25",
+            "from": "cpe-proj-mgmt",
+            "fromPort": "bottom",
+            "to": "cpe-proj1",
+            "toPort": "top",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m26",
+            "from": "cpe-seminar",
+            "fromPort": "right",
+            "to": "cpe-proj1",
+            "toPort": "left",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m27",
+            "from": "cpe-proj1",
+            "fromPort": "bottom",
+            "to": "cpe-proj2",
+            "toPort": "top",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m28",
+            "from": "cpe-prep-field",
+            "fromPort": "bottom",
+            "to": "cpe-field-exp",
+            "toPort": "top",
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
+          },
+          {
+            "id": "conn-m29",
+            "from": "cpe-proj2",
+            "fromPort": "right",
+            "to": "cpe-field-exp",
+            "toPort": "left",
+            "type": "dashed",
+            "style": "advisory",
+            "arrow": "forward"
           }
         ]
       },
       "ge": {
         "courses": [
           {
-            "id": "ge-eng1",
-            "code": "0166001",
-            "nameTh": "ภาษาอังกฤษพื้นฐาน",
-            "nameEn": "Foundation English",
-            "credits": "3(2-2-5)",
-            "track": "Language",
-            "color": "#06b6d4",
-            "x": 60,
-            "y": 120,
-            "level": 1
-          },
-          {
-            "id": "ge-eng2",
-            "code": "0166002",
-            "nameTh": "ภาษาอังกฤษเพื่อการสื่อสารในศตวรรษที่ 21",
-            "nameEn": "English for Communication in 21st Century",
-            "credits": "3(2-2-5)",
-            "track": "Language",
-            "color": "#06b6d4",
-            "x": 520,
-            "y": 120,
-            "level": 2
-          },
-          {
-            "id": "ge-eng3",
-            "code": "0166004",
-            "nameTh": "ภาษาอังกฤษเพื่อเตรียมความพร้อมประกอบอาชีพ",
-            "nameEn": "English for Career Preparation",
-            "credits": "3(2-2-5)",
-            "track": "Language",
-            "color": "#06b6d4",
-            "x": 980,
-            "y": 120,
-            "level": 3
-          },
-          {
-            "id": "ge-thai",
-            "code": "0166006",
-            "nameTh": "ทักษะภาษาไทยเพื่อการสื่อสารร่วมสมัย",
-            "nameEn": "Thai Skills for Contemporary Communication",
-            "credits": "3(2-2-5)",
-            "track": "Language",
-            "color": "#06b6d4",
-            "x": 60,
-            "y": 280,
-            "level": 1
-          },
-          {
             "id": "ge-king",
-            "code": "0266014",
-            "nameTh": "ศาสตร์พระราชาสู่การพัฒนาอย่างยั่งยืน",
-            "nameEn": "Philosophy for Sustainable Development",
+            "code": "0166001",
+            "nameTh": "ศาสตร์พระราชา",
+            "nameEn": "The King's Philosophy",
             "credits": "3(3-0-6)",
             "track": "Social & Humanities",
             "color": "#ec4899",
             "x": 60,
-            "y": 460,
+            "y": 100,
             "level": 1
           },
           {
-            "id": "ge-socialeng",
-            "code": "0266024",
-            "nameTh": "วิศวกรสังคม",
-            "nameEn": "Social Engineer",
-            "credits": "3(2-2-5)",
-            "track": "Social & Humanities",
-            "color": "#ec4899",
-            "x": 520,
-            "y": 460,
-            "level": 2
-          },
-          {
-            "id": "ge-startup",
-            "code": "0266026",
-            "nameTh": "ผู้ประกอบการวิถีใหม่",
-            "nameEn": "New Normal Entrepreneur",
+            "id": "ge-tech",
+            "code": "0366015",
+            "nameTh": "การประยุกต์ใช้เทคโนโลยีในชีวิตประจำวัน",
+            "nameEn": "Application of Technology in Daily Life",
             "credits": "3(3-0-6)",
-            "track": "Social & Humanities",
-            "color": "#ec4899",
-            "x": 980,
-            "y": 460,
-            "level": 3
+            "track": "Science & Tech",
+            "color": "#3b82f6",
+            "x": 60,
+            "y": 250,
+            "level": 1
           },
           {
-            "id": "ge-think",
+            "id": "ge-thinking",
             "code": "0366017",
             "nameTh": "การคิดและการตัดสินใจ",
             "nameEn": "Thinking and Decision Making",
-            "credits": "3(2-2-5)",
-            "track": "Science & Innovation",
+            "credits": "3(3-0-6)",
+            "track": "Science & Tech",
             "color": "#3b82f6",
             "x": 60,
-            "y": 640,
+            "y": 400,
             "level": 1
           },
           {
-            "id": "ge-logic",
-            "code": "0366019",
-            "nameTh": "การคิดเชิงเหตุผล",
-            "nameEn": "Logical Thinking",
-            "credits": "3(2-2-5)",
-            "track": "Science & Innovation",
-            "color": "#3b82f6",
+            "id": "ge-speech",
+            "code": "0266010",
+            "nameTh": "ศิลปะการพูดและการนำเสนอ",
+            "nameEn": "The Art of Speaking and Presentation",
+            "credits": "3(3-0-6)",
+            "track": "Language",
+            "color": "#06b6d4",
+            "x": 60,
+            "y": 550,
+            "level": 1
+          },
+          {
+            "id": "ge-chinese",
+            "code": "0166012",
+            "nameTh": "ทักษะภาษาจีนเพื่อการสื่อสาร",
+            "nameEn": "Chinese Language Skills for Communication",
+            "credits": "3(3-0-6)",
+            "track": "Language",
+            "color": "#06b6d4",
             "x": 520,
-            "y": 640,
+            "y": 100,
             "level": 2
           },
           {
-            "id": "ge-ai",
-            "code": "0366007",
-            "nameTh": "วิทยาศาสตร์กับปัญญาประดิษฐ์",
-            "nameEn": "Science and AI",
+            "id": "ge-eng-career",
+            "code": "0166006",
+            "nameTh": "ภาษาอังกฤษเพื่อเตรียมความพร้อมในการประกอบอาชีพ",
+            "nameEn": "English for Career Preparation",
             "credits": "3(3-0-6)",
-            "track": "Science & Innovation",
-            "color": "#3b82f6",
+            "track": "Language",
+            "color": "#06b6d4",
+            "x": 520,
+            "y": 550,
+            "level": 2
+          },
+          {
+            "id": "ge-entrepreneur",
+            "code": "0266026",
+            "nameTh": "ผู้ประกอบการวิถีใหม่",
+            "nameEn": "New-Age Entrepreneur",
+            "credits": "3(3-0-6)",
+            "track": "Social & Humanities",
+            "color": "#ec4899",
             "x": 980,
-            "y": 640,
+            "y": 250,
+            "level": 3
+          },
+          {
+            "id": "ge-eng-prof",
+            "code": "0166007",
+            "nameTh": "ภาษาอังกฤษเพื่อวิชาชีพ",
+            "nameEn": "English for Professional Purposes",
+            "credits": "3(3-0-6)",
+            "track": "Language",
+            "color": "#06b6d4",
+            "x": 980,
+            "y": 550,
             "level": 3
           }
         ],
         "connections": [
           {
-            "id": "ge-c-1",
-            "fromNode": "ge-eng1",
+            "id": "conn-ge1",
+            "from": "ge-speech",
             "fromPort": "right",
-            "toNode": "ge-eng2",
+            "to": "ge-eng-career",
             "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
+            "type": "dashed",
+            "style": "advisory",
+            "arrow": "forward"
           },
           {
-            "id": "ge-c-2",
-            "fromNode": "ge-eng2",
+            "id": "conn-ge2",
+            "from": "ge-eng-career",
             "fromPort": "right",
-            "toNode": "ge-eng3",
+            "to": "ge-eng-prof",
             "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
+            "type": "solid",
+            "style": "hard_and",
+            "arrow": "forward"
           },
           {
-            "id": "ge-c-3",
-            "fromNode": "ge-king",
+            "id": "conn-ge3",
+            "from": "ge-thinking",
             "fromPort": "right",
-            "toNode": "ge-socialeng",
+            "to": "ge-entrepreneur",
             "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
+            "type": "dashed",
+            "style": "advisory",
+            "arrow": "forward"
           },
           {
-            "id": "ge-c-4",
-            "fromNode": "ge-socialeng",
+            "id": "conn-ge4",
+            "from": "ge-king",
             "fromPort": "right",
-            "toNode": "ge-startup",
+            "to": "ge-entrepreneur",
             "toPort": "left",
-            "type": "orange",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "ge-c-5",
-            "fromNode": "ge-think",
-            "fromPort": "right",
-            "toNode": "ge-logic",
-            "toPort": "left",
-            "type": "blue",
-            "arrowDir": "forward"
-          },
-          {
-            "id": "ge-c-6",
-            "fromNode": "ge-logic",
-            "fromPort": "right",
-            "toNode": "ge-ai",
-            "toPort": "left",
-            "type": "green",
-            "arrowDir": "forward"
+            "type": "dashed",
+            "style": "advisory",
+            "arrow": "forward"
           }
         ]
       },
       "tracks": [
         {
+          "name": "Software & Data",
+          "color": "#10b981"
+        },
+        {
+          "name": "Hardware & IoT",
+          "color": "#f59e0b"
+        },
+        {
           "name": "Network",
           "color": "#0284c7"
         },
         {
-          "name": "Security",
+          "name": "Cybersecurity",
           "color": "#ef4444"
         },
         {
-          "name": "Software",
-          "color": "#10b981"
+          "name": "Cloud & DevOps",
+          "color": "#6366f1"
         },
         {
-          "name": "Hardware / IoT",
-          "color": "#f59e0b"
-        },
-        {
-          "name": "Cloud & AI",
+          "name": "AI & Data",
           "color": "#8b5cf6"
         },
         {
@@ -2767,7 +2831,7 @@
           "color": "#ec4899"
         },
         {
-          "name": "Science & Innovation",
+          "name": "Science & Tech",
           "color": "#3b82f6"
         }
       ]
@@ -3089,7 +3153,7 @@
       const saved = localStorage.getItem('ro_curriculum_state_v2');
       if (saved) {
         try {
-          if (!saved.includes('cpe-net1')) {
+          if (!saved.includes('cpe-prog')) {
             appState = JSON.parse(JSON.stringify(DEFAULT_DATA));
             saveToStorage();
           } else {
