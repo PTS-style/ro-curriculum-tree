@@ -222,7 +222,7 @@
       box-shadow: 4px 0 16px rgba(0,0,0,0.4);
       display: flex;
       flex-direction: column;
-      z-index: 25;
+      z-index: 50;
       transition: margin-left 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -230,42 +230,79 @@
       margin-left: -280px;
     }
 
+    /* Prominent Collapsible Tab on the right border */
     .ro-sidebar-toggle-btn {
       position: absolute;
       top: 50%;
-      right: -24px;
+      right: -28px;
       transform: translateY(-50%);
-      width: 24px;
-      height: 56px;
-      background: #1e293b;
-      border: 1px solid #334155;
+      width: 28px;
+      height: 76px;
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      border: 2px solid #ffd166;
       border-left: none;
-      border-radius: 0 8px 8px 0;
+      border-radius: 0 10px 10px 0;
       color: #ffd166;
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 900;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 30;
-      box-shadow: 3px 0 10px rgba(0,0,0,0.35);
-      transition: background 0.15s, color 0.15s, width 0.15s, right 0.15s;
+      z-index: 60;
+      box-shadow: 4px 0 14px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 209, 102, 0.35);
+      transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
       user-select: none;
       padding: 0;
       outline: none;
     }
 
     .ro-sidebar-toggle-btn:hover {
-      background: #253347;
-      color: #38bdf8;
-      width: 28px;
-      right: -28px;
-      box-shadow: 4px 0 12px rgba(56, 189, 248, 0.25);
+      background: linear-gradient(180deg, #2a3d5b 0%, #1a273b 100%);
+      color: #ffffff;
+      border-color: #38bdf8;
+      width: 32px;
+      right: -32px;
+      box-shadow: 6px 0 18px rgba(56, 189, 248, 0.5), 0 0 12px rgba(56, 189, 248, 0.4);
     }
 
     .ro-sidebar-toggle-btn:active {
-      transform: translateY(-50%) scale(0.95);
+      transform: translateY(-50%) scale(0.93);
+    }
+
+    /* Pulsing glow when collapsed to invite user to expand */
+    aside.ro-sidebar.collapsed .ro-sidebar-toggle-btn {
+      border-color: #38bdf8;
+      color: #38bdf8;
+      animation: sidebarPulseGlow 2s infinite;
+    }
+
+    @keyframes sidebarPulseGlow {
+      0%, 100% {
+        box-shadow: 4px 0 14px rgba(0,0,0,0.6), 0 0 8px rgba(56, 189, 248, 0.3);
+      }
+      50% {
+        box-shadow: 6px 0 20px rgba(0,0,0,0.8), 0 0 16px rgba(56, 189, 248, 0.7);
+      }
+    }
+
+    .ro-sidebar-header-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .ro-sidebar-header-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #38bdf8;
     }
 
     .ro-sidebar-header {
@@ -1512,13 +1549,18 @@
     
     <!-- Left Sidebar: RO Job Selector & Control -->
     <aside class="ro-sidebar" id="leftSidebar">
-      <!-- Collapsible Toggle Button -->
-      <button class="ro-sidebar-toggle-btn" id="btnToggleSidebar" title="ย่อ / ขยายแถบเมนู (Collapse Sidebar)">
+      <!-- Collapsible Toggle Button (ตรงกลางขอบขวาของแถบซ้าย) -->
+      <button class="ro-sidebar-toggle-btn" id="btnToggleSidebar" title="ซ่อนแถบเมนูด้านซ้าย (คลิกเพื่อหุบเข้า)">
         <span id="sidebarToggleIcon">◀</span>
       </button>
 
       <div class="ro-sidebar-header">
-        <h2>📜 แผนการเรียนและสายวิชา</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+          <h2 style="margin: 0; font-size: 14px; font-weight: 700; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+            📜 แผนการเรียนและสายวิชา
+          </h2>
+          <button class="ro-sidebar-header-btn" id="btnHeaderCollapse" title="ซ่อนแถบเมนูด้านซ้าย (คลิกเพื่อหุบเข้า)">◀ ซ่อน</button>
+        </div>
         <p>เลือกโหมดผังวิชาศึกษาทั่วไป หรือ วิชาหลักสูตร</p>
       </div>
 
@@ -2457,19 +2499,35 @@
     function setupSidebarToggle() {
       const sidebar = document.getElementById('leftSidebar');
       const toggleBtn = document.getElementById('btnToggleSidebar');
+      const headerBtn = document.getElementById('btnHeaderCollapse');
       const icon = document.getElementById('sidebarToggleIcon');
-      if (!sidebar || !toggleBtn) return;
+      if (!sidebar) return;
 
-      toggleBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
+      function toggleSidebar() {
         sidebar.classList.toggle('collapsed');
         const isCollapsed = sidebar.classList.contains('collapsed');
         if (icon) {
           icon.textContent = isCollapsed ? '▶' : '◀';
         }
-        toggleBtn.setAttribute('title', isCollapsed ? 'ขยายแถบเมนู (Expand Sidebar)' : 'ย่อแถบเมนู (Collapse Sidebar)');
+        if (toggleBtn) {
+          toggleBtn.setAttribute('title', isCollapsed ? 'แสดงแถบเมนู (คลิกเพื่อขยายออก)' : 'ซ่อนแถบเมนู (คลิกเพื่อหุบเข้าด้านซ้าย)');
+        }
         roSound.playClick();
-      });
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleSidebar();
+        });
+      }
+
+      if (headerBtn) {
+        headerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleSidebar();
+        });
+      }
     }
 
     function setupTrackManagement() {
