@@ -1260,9 +1260,6 @@
       <button class="ro-btn" id="btnResetDemo" title="คืนค่าข้อมูลตัวอย่างตั้งต้น">
         <span>🔄 คืนค่าตัวอย่าง</span>
       </button>
-      <button class="ro-btn ro-btn-icon" id="btnToggleInspector" title="เปิด/ปิด แถบจัดการเส้นความสัมพันธ์">
-        <span>⚡ แถบจัดการเส้น</span>
-      </button>
       <button class="ro-btn ro-btn-icon" id="btnToggleSound" title="เปิด/ปิดเสียง RO">
         <span id="soundIcon">🔊</span>
       </button>
@@ -1496,8 +1493,8 @@
 
     </main>
 
-    <!-- Right Sidebar: Line Inspector Panel (ปรับแต่งเส้นและลูกศร) -->
-    <aside class="ro-inspector-sidebar" id="inspectorSidebar">
+    <!-- Right Sidebar: Line Inspector Panel (แสดงเฉพาะเมื่อคลิกที่เส้น) -->
+    <aside class="ro-inspector-sidebar collapsed" id="inspectorSidebar">
       <div class="ro-inspector-header">
         <div>
           <h2>⚡ ตั้งค่าเส้นเชื่อม (Line Inspector)</h2>
@@ -2130,7 +2127,7 @@
         isDraggingNode = true;
         dragNodeEl = el;
         selectedNodeId = course.id;
-        selectedConnectionId = null; // deselect line
+        closeInspector();
 
         dragOffsetX = e.clientX - el.getBoundingClientRect().left;
         dragOffsetY = e.clientY - el.getBoundingClientRect().top;
@@ -2138,7 +2135,6 @@
         document.querySelectorAll('.ro-course-node').forEach(n => n.classList.remove('selected'));
         el.classList.add('selected');
         roSound.playClick();
-        renderInspector();
         renderAllLines();
         e.stopPropagation();
       });
@@ -2353,11 +2349,17 @@
       const model = getCurrentTabModel();
       model.connections = model.connections.filter(c => c.id !== connId);
       if (selectedConnectionId === connId) {
-        selectedConnectionId = null;
+        closeInspector();
       }
       roSound.playDelete();
       saveToStorage();
       render();
+    }
+
+    function closeInspector() {
+      selectedConnectionId = null;
+      inspectorSidebar.classList.add('collapsed');
+      renderAllLines();
     }
 
     function selectConnection(connId) {
@@ -2374,12 +2376,18 @@
        ================================================================= */
     function setupInspectorEvents() {
       document.getElementById('btnCloseInspector').addEventListener('click', () => {
-        inspectorSidebar.classList.add('collapsed');
+        closeInspector();
+        roSound.playClick();
       });
 
-      document.getElementById('btnToggleInspector').addEventListener('click', () => {
-        inspectorSidebar.classList.toggle('collapsed');
-        roSound.playClick();
+      // ปิดแถบด้านขวาทันที หากกดที่ตำแหน่งอื่นที่ไม่ใช่เส้น
+      window.addEventListener('mousedown', (e) => {
+        if (inspectorSidebar.classList.contains('collapsed')) return;
+        if (inspectorSidebar.contains(e.target)) return;
+        if (e.target.closest('.conn-group') || e.target.classList.contains('hit-area') || e.target.classList.contains('visible-line')) return;
+        if (e.target.closest('.ro-modal-backdrop') || e.target.closest('.ro-context-menu')) return;
+
+        closeInspector();
       });
     }
 
@@ -2556,14 +2564,12 @@
        CANVAS & DRAG INTERACTIONS
        ================================================================= */
     function setupCanvasEvents() {
-      // Click canvas background to deselect
+      // Click canvas background to deselect & close inspector
       columnsContainer.addEventListener('click', (e) => {
         if (e.target === columnsContainer || e.target.classList.contains('ro-col-lane') || e.target.id === 'connectionsSvg') {
-          selectedConnectionId = null;
           selectedNodeId = null;
           document.querySelectorAll('.ro-course-node').forEach(n => n.classList.remove('selected'));
-          renderInspector();
-          renderAllLines();
+          closeInspector();
         }
       });
 
@@ -2637,7 +2643,7 @@
         tabGE.classList.add('active');
         tabMajor.classList.remove('active');
         selectedNodeId = null;
-        selectedConnectionId = null;
+        closeInspector();
         roSound.playClick();
         saveToStorage();
         render();
@@ -2649,7 +2655,7 @@
         tabMajor.classList.add('active');
         tabGE.classList.remove('active');
         selectedNodeId = null;
-        selectedConnectionId = null;
+        closeInspector();
         roSound.playClick();
         saveToStorage();
         render();
