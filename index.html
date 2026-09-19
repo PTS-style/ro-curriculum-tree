@@ -214,6 +214,7 @@
        Left Sidebar: RO Job Selector & Control
        ========================================= */
     aside.ro-sidebar {
+      position: relative;
       width: 280px;
       min-width: 280px;
       background: #0f172a;
@@ -221,7 +222,50 @@
       box-shadow: 4px 0 16px rgba(0,0,0,0.4);
       display: flex;
       flex-direction: column;
-      z-index: 20;
+      z-index: 25;
+      transition: margin-left 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    aside.ro-sidebar.collapsed {
+      margin-left: -280px;
+    }
+
+    .ro-sidebar-toggle-btn {
+      position: absolute;
+      top: 50%;
+      right: -24px;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 56px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-left: none;
+      border-radius: 0 8px 8px 0;
+      color: #ffd166;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      box-shadow: 3px 0 10px rgba(0,0,0,0.35);
+      transition: background 0.15s, color 0.15s, width 0.15s, right 0.15s;
+      user-select: none;
+      padding: 0;
+      outline: none;
+    }
+
+    .ro-sidebar-toggle-btn:hover {
+      background: #253347;
+      color: #38bdf8;
+      width: 28px;
+      right: -28px;
+      box-shadow: 4px 0 12px rgba(56, 189, 248, 0.25);
+    }
+
+    .ro-sidebar-toggle-btn:active {
+      transform: translateY(-50%) scale(0.95);
     }
 
     .ro-sidebar-header {
@@ -414,24 +458,123 @@
     .tag-orange { color: var(--color-orange); }
     .tag-green { color: var(--color-green); }
 
-    /* Track Categories */
-    .ro-track-palette {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    /* Dynamic Track Manager in Sidebar */
+    .ro-track-manage-list {
+      display: flex;
+      flex-direction: column;
       gap: 6px;
+      max-height: 220px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-bottom: 10px;
     }
 
-    .ro-track-badge {
+    .ro-track-manage-list::-webkit-scrollbar {
+      width: 4px;
+    }
+    .ro-track-manage-list::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 2px;
+    }
+
+    .ro-track-row {
       display: flex;
       align-items: center;
-      gap: 5px;
-      font-size: 10px;
-      font-weight: 600;
-      padding: 4px 6px;
+      gap: 8px;
       background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 5px;
+      padding: 4px 8px;
+      transition: background 0.15s;
+    }
+
+    .ro-track-row:hover {
+      background: #172236;
+      border-color: #2b3d56;
+    }
+
+    .ro-track-row-color {
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      border: 1px solid #475569;
       border-radius: 4px;
-      border: 1px solid #26354d;
-      color: #cbd5e1;
+      cursor: pointer;
+      background: none;
+      flex-shrink: 0;
+    }
+
+    .ro-track-row-color::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    .ro-track-row-color::-webkit-color-swatch {
+      border: none;
+      border-radius: 3px;
+    }
+
+    .ro-track-row-name {
+      flex: 1;
+      font-size: 12px;
+      font-weight: 600;
+      color: #e2e8f0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ro-track-row-count {
+      font-size: 10px;
+      font-weight: 500;
+      color: #94a3b8;
+      background: #1e293b;
+      padding: 1px 6px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .ro-add-track-section {
+      background: #0d1525;
+      border: 1px dashed #24344d;
+      border-radius: 6px;
+      padding: 8px;
+    }
+
+    .ro-track-color-input {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 1px solid #475569;
+      border-radius: 4px;
+      cursor: pointer;
+      background: none;
+      flex-shrink: 0;
+    }
+
+    .ro-track-color-input::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    .ro-track-color-input::-webkit-color-swatch {
+      border: none;
+      border-radius: 3px;
+    }
+
+    .ro-track-name-input {
+      flex: 1;
+      min-width: 0;
+      height: 28px;
+      background: #162032;
+      border: 1px solid #2d3f58;
+      border-radius: 4px;
+      padding: 0 8px;
+      font-size: 11px;
+      color: #f1f5f9;
+      outline: none;
+    }
+
+    .ro-track-name-input:focus {
+      border-color: #38bdf8;
     }
 
     .track-dot {
@@ -715,11 +858,38 @@
       color: #64748b;
     }
 
-    .ro-node-track-badge {
-      font-weight: 600;
-      display: flex;
+    .ro-node-track-select-wrap {
+      display: inline-flex;
       align-items: center;
       gap: 4px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ro-node-track-select {
+      font-size: 10px;
+      font-weight: 600;
+      color: #1e293b;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 1px 4px;
+      cursor: pointer;
+      outline: none;
+      max-width: 120px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .ro-node-track-select:hover {
+      border-color: #94a3b8;
+      background: #f8fafc;
+    }
+
+    .ro-node-track-select:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 1.5px rgba(56, 189, 248, 0.3);
     }
 
     /* =========================================
@@ -1179,7 +1349,7 @@
         overflow: visible !important;
       }
 
-      header.ro-topbar, aside.ro-sidebar, aside.ro-inspector-sidebar, .ro-context-menu, .ro-modal-backdrop, .ro-canvas-controls {
+      header.ro-topbar, aside.ro-sidebar, aside.ro-inspector-sidebar, .ro-context-menu, .ro-modal-backdrop, .ro-canvas-controls, .ro-sidebar-toggle-btn {
         display: none !important;
       }
 
@@ -1313,7 +1483,12 @@
   <div class="ro-workspace">
     
     <!-- Left Sidebar: RO Job Selector & Control -->
-    <aside class="ro-sidebar">
+    <aside class="ro-sidebar" id="leftSidebar">
+      <!-- Collapsible Toggle Button -->
+      <button class="ro-sidebar-toggle-btn" id="btnToggleSidebar" title="ย่อ / ขยายแถบเมนู (Collapse Sidebar)">
+        <span id="sidebarToggleIcon">◀</span>
+      </button>
+
       <div class="ro-sidebar-header">
         <h2>📜 สายวิชาการเรียน (Job Class)</h2>
         <p>เลือกโหมดผังวิชาศึกษาทั่วไป หรือ วิชาหลักสูตร</p>
@@ -1403,22 +1578,31 @@
           </div>
         </div>
 
-        <!-- Track Categories -->
-        <div class="ro-box">
-          <div class="ro-box-title">
-            <span>🎨 หมวดสายวิชา (Track Palette)</span>
+        <!-- Track Categories (หมวดสายวิชา) -->
+        <div class="ro-box" id="trackManagerBox">
+          <div class="ro-box-title" style="display: flex; justify-content: space-between; align-items: center;">
+            <span>🎨 หมวดสายวิชา (Tracks)</span>
+            <span style="font-size: 10px; color: #94a3b8;" id="trackCountLabel">0 หมวด</span>
           </div>
-          <div class="ro-track-palette">
-            <div class="ro-track-badge"><span class="track-dot" style="background: #ef4444;"></span> Network</div>
-            <div class="ro-track-badge"><span class="track-dot" style="background: #0284c7;"></span> Cloud</div>
-            <div class="ro-track-badge"><span class="track-dot" style="background: #8b5cf6;"></span> IoT / Embed</div>
-            <div class="ro-track-badge"><span class="track-dot" style="background: #10b981;"></span> Software</div>
-            <div class="ro-track-badge"><span class="track-dot" style="background: #f59e0b;"></span> Data & AI</div>
-            <div class="ro-track-badge"><span class="track-dot" style="background: #475569;"></span> CyberSec</div>
+          <p style="font-size: 10px; color: #94a3b8; margin: 4px 0 8px 0; line-height: 1.3;">
+            คลิกที่สีเพื่อเปลี่ยนสีประจำหมวด (สีของรายวิชาทั้งหมดในหมวดนี้จะเปลี่ยนตามทันที)
+          </p>
+
+          <!-- Dynamic Track List -->
+          <div class="ro-track-manage-list" id="trackManageList">
+            <!-- Rendered by renderTrackList() -->
+          </div>
+
+          <!-- Add New Track Form -->
+          <div class="ro-add-track-section">
+            <div style="font-size: 11px; font-weight: 600; color: #cbd5e1; margin-bottom: 6px;">➕ เพิ่มหมวดสายวิชาใหม่</div>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <input type="color" id="newTrackColor" value="#ec4899" title="เลือกสีหมวดสายวิชา" class="ro-track-color-input">
+              <input type="text" id="newTrackName" placeholder="เช่น DevOps, AI" class="ro-track-name-input">
+              <button id="btnAddNewTrack" class="ro-btn ro-btn-secondary" style="padding: 4px 10px; font-size: 11px; white-space: nowrap;">เพิ่ม</button>
+            </div>
           </div>
         </div>
-
-
 
       </div>
     </aside>
@@ -1531,18 +1715,6 @@
 
   <!-- Right Click Context Menu for Course Box -->
   <div class="ro-context-menu" id="contextMenu">
-    <div style="padding: 4px 14px 2px 14px; font-size: 10px; font-weight: 700; color: #64748b;">เปลี่ยนสีสายวิชา:</div>
-    <div class="ro-color-palette-picker">
-      <div class="ro-color-swatch" style="background: #ef4444;" data-color="#ef4444" title="Network / แดง"></div>
-      <div class="ro-color-swatch" style="background: #0284c7;" data-color="#0284c7" title="Cloud / ฟ้า"></div>
-      <div class="ro-color-swatch" style="background: #8b5cf6;" data-color="#8b5cf6" title="IoT / ม่วง"></div>
-      <div class="ro-color-swatch" style="background: #10b981;" data-color="#10b981" title="Software / เขียว"></div>
-      <div class="ro-color-swatch" style="background: #f59e0b;" data-color="#f59e0b" title="Data & AI / ส้ม"></div>
-      <div class="ro-color-swatch" style="background: #475569;" data-color="#475569" title="CyberSec / เทา"></div>
-      <div class="ro-color-swatch" style="background: #ec4899;" data-color="#ec4899" title="Design / ชมพู"></div>
-      <div class="ro-color-swatch" style="background: #14b8a6;" data-color="#14b8a6" title="DevOps / มิ้นท์"></div>
-    </div>
-    <div class="ro-menu-divider"></div>
     <div class="ro-menu-item" id="menuEdit">✏️ แก้ไขข้อมูลรายวิชา</div>
     <div class="ro-menu-item" id="menuDuplicate">📋 คัดลอกวิชานี้</div>
     <div class="ro-menu-divider"></div>
@@ -1575,15 +1747,13 @@
           <label>ชื่อวิชาภาษาอังกฤษ:</label>
           <input type="text" id="modalCourseNameEn" placeholder="เช่น Introduction to Computer Networks">
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-          <div class="ro-form-group">
-            <label>หมวดหมู่ / สายวิชา:</label>
-            <input type="text" id="modalCourseTrack" placeholder="เช่น Network, Cloud, GE">
+        <div class="ro-form-group">
+          <label>หมวดสายวิชา (Track):</label>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <select id="modalCourseTrack" style="flex: 1; height: 38px; padding: 6px 10px; background: #0f172a; border: 1px solid #334155; border-radius: 4px; color: #f8fafc; font-size: 13px; outline: none;"></select>
+            <div id="modalTrackColorPreview" style="width: 32px; height: 32px; border-radius: 6px; border: 2px solid #475569; background: #0284c7; flex-shrink: 0;" title="สีประจำหมวดสายวิชา (ปรับแต่งได้ที่แถบซ้าย)"></div>
           </div>
-          <div class="ro-form-group">
-            <label>สีประจำวิชา (Color):</label>
-            <input type="color" id="modalCourseColor" value="#0284c7" style="height: 38px; padding: 2px; cursor: pointer;">
-          </div>
+          <p style="font-size: 11px; color: #94a3b8; margin-top: 4px;">* สีของรายวิชาจะเปลี่ยนตามหมวดสายวิชาอัตโนมัติ (สามารถปรับสีและเพิ่มหมวดใหม่ได้ที่แถบเมนูด้านซ้าย)</p>
         </div>
       </div>
       <div class="ro-modal-footer">
@@ -1989,7 +2159,18 @@
             arrowDir: "forward"
           }
         ]
-      }
+      },
+      tracks: [
+        { name: "Network", color: "#ef4444" },
+        { name: "Cloud", color: "#0284c7" },
+        { name: "IoT / Embed", color: "#8b5cf6" },
+        { name: "Software", color: "#10b981" },
+        { name: "Data & AI", color: "#f59e0b" },
+        { name: "CyberSec", color: "#475569" },
+        { name: "Language", color: "#8b5cf6" },
+        { name: "Humanities", color: "#f59e0b" },
+        { name: "General", color: "#6366f1" }
+      ]
     };
 
     /* =================================================================
@@ -2097,6 +2278,155 @@
     /* =================================================================
        INIT & EVENT BINDINGS
        ================================================================= */
+    const DEFAULT_TRACKS = [
+      { name: "Network", color: "#ef4444" },
+      { name: "Cloud", color: "#0284c7" },
+      { name: "IoT / Embed", color: "#8b5cf6" },
+      { name: "Software", color: "#10b981" },
+      { name: "Data & AI", color: "#f59e0b" },
+      { name: "CyberSec", color: "#475569" },
+      { name: "Language", color: "#8b5cf6" },
+      { name: "Humanities", color: "#f59e0b" },
+      { name: "General", color: "#6366f1" }
+    ];
+
+    function getAllTracks() {
+      if (!appState.tracks || !Array.isArray(appState.tracks) || appState.tracks.length === 0) {
+        appState.tracks = JSON.parse(JSON.stringify(DEFAULT_TRACKS));
+      }
+
+      const trackMap = new Map();
+      appState.tracks.forEach(t => {
+        if (t && t.name) {
+          trackMap.set(t.name.trim().toLowerCase(), { name: t.name.trim(), color: t.color || '#0284c7' });
+        }
+      });
+
+      // Auto-discover any tracks present in courses
+      const allCourses = [...(appState.major?.courses || []), ...(appState.ge?.courses || [])];
+      allCourses.forEach(c => {
+        const rawTrack = (c.track || '').trim();
+        if (rawTrack) {
+          const key = rawTrack.toLowerCase();
+          if (!trackMap.has(key)) {
+            trackMap.set(key, { name: rawTrack, color: c.color || '#0284c7' });
+          }
+        }
+      });
+
+      appState.tracks = Array.from(trackMap.values());
+      return appState.tracks;
+    }
+
+    function renderTrackList() {
+      const tracks = getAllTracks();
+      const container = document.getElementById('trackManageList');
+      const countLabel = document.getElementById('trackCountLabel');
+      if (!container) return;
+
+      if (countLabel) countLabel.innerText = `${tracks.length} หมวด`;
+
+      const allCourses = [...(appState.major?.courses || []), ...(appState.ge?.courses || [])];
+
+      container.innerHTML = tracks.map(track => {
+        const courseCount = allCourses.filter(c => (c.track || '').trim().toLowerCase() === track.name.toLowerCase()).length;
+        return `
+          <div class="ro-track-row" data-track="${escapeHtml(track.name)}">
+            <input type="color" class="ro-track-row-color" value="${track.color}" title="คลิกเปลี่ยนสีหมวด ${escapeHtml(track.name)}" data-track-name="${escapeHtml(track.name)}">
+            <span class="ro-track-row-name" title="${escapeHtml(track.name)}">${escapeHtml(track.name)}</span>
+            <span class="ro-track-row-count">${courseCount} วิชา</span>
+          </div>
+        `;
+      }).join('');
+
+      container.querySelectorAll('.ro-track-row-color').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const trackName = e.target.getAttribute('data-track-name');
+          const newColor = e.target.value;
+          setTrackColor(trackName, newColor);
+        });
+      });
+    }
+
+    function setTrackColor(trackName, newColor) {
+      const tracks = getAllTracks();
+      const track = tracks.find(t => t.name.toLowerCase() === trackName.toLowerCase());
+      if (track) {
+        track.color = newColor;
+      }
+
+      // Update color in all courses across major and ge
+      const allCourses = [...(appState.major?.courses || []), ...(appState.ge?.courses || [])];
+      allCourses.forEach(c => {
+        if ((c.track || '').trim().toLowerCase() === trackName.toLowerCase()) {
+          c.color = newColor;
+        }
+      });
+
+      saveToStorage();
+      render();
+    }
+
+    function addNewTrack(name, color) {
+      const trimmed = name.trim();
+      if (!trimmed) return;
+
+      const tracks = getAllTracks();
+      const exists = tracks.some(t => t.name.toLowerCase() === trimmed.toLowerCase());
+      if (exists) {
+        alert(`หมวดสายวิชา "${trimmed}" มีอยู่แล้ว`);
+        return;
+      }
+
+      tracks.push({ name: trimmed, color: color || '#0284c7' });
+      appState.tracks = tracks;
+      saveToStorage();
+      render();
+      roSound.playClick();
+    }
+
+    function setupSidebarToggle() {
+      const sidebar = document.getElementById('leftSidebar');
+      const toggleBtn = document.getElementById('btnToggleSidebar');
+      const icon = document.getElementById('sidebarToggleIcon');
+      if (!sidebar || !toggleBtn) return;
+
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('collapsed');
+        const isCollapsed = sidebar.classList.contains('collapsed');
+        if (icon) {
+          icon.textContent = isCollapsed ? '▶' : '◀';
+        }
+        toggleBtn.setAttribute('title', isCollapsed ? 'ขยายแถบเมนู (Expand Sidebar)' : 'ย่อแถบเมนู (Collapse Sidebar)');
+        roSound.playClick();
+      });
+    }
+
+    function setupTrackManagement() {
+      const btnAdd = document.getElementById('btnAddNewTrack');
+      const nameInput = document.getElementById('newTrackName');
+      const colorInput = document.getElementById('newTrackColor');
+
+      if (btnAdd) {
+        btnAdd.addEventListener('click', () => {
+          if (nameInput) {
+            addNewTrack(nameInput.value, colorInput ? colorInput.value : '#ec4899');
+            nameInput.value = '';
+          }
+        });
+      }
+
+      if (nameInput) {
+        nameInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            if (btnAdd) btnAdd.click();
+          }
+        });
+      }
+    }
+
     function init() {
       const saved = localStorage.getItem('ro_curriculum_state_v2');
       if (saved) {
@@ -2115,6 +2445,8 @@
       setupModalEvents();
       setupContextMenu();
       setupInspectorEvents();
+      setupSidebarToggle();
+      setupTrackManagement();
 
       render();
     }
@@ -2153,10 +2485,23 @@
       // Render Inspector
       renderInspector();
 
+      // Render Track List in Left Sidebar
+      renderTrackList();
+
       updateStats();
     }
 
     function createNodeElement(course) {
+      const allTracks = getAllTracks();
+      const currentTrackName = (course.track || '').trim();
+      const matchedTrack = allTracks.find(t => t.name.toLowerCase() === currentTrackName.toLowerCase());
+      if (matchedTrack) {
+        course.color = matchedTrack.color;
+      } else if (allTracks.length > 0) {
+        course.track = allTracks[0].name;
+        course.color = allTracks[0].color;
+      }
+
       const el = document.createElement('div');
       el.className = 'ro-course-node' + (selectedNodeId === course.id ? ' selected' : '');
       el.id = course.id;
@@ -2184,13 +2529,34 @@
 
         <!-- Node Footer -->
         <div class="ro-node-footer">
-          <span class="ro-node-track-badge">
+          <div class="ro-node-track-select-wrap">
             <span class="track-dot" style="background: ${course.color || '#0284c7'};"></span>
-            ${escapeHtml(course.track || 'Core')}
-          </span>
+            <select class="ro-node-track-select" title="เลือกหมวดสายวิชา">
+              ${allTracks.map(t => `<option value="${escapeHtml(t.name)}" ${(t.name.toLowerCase() === (course.track || '').toLowerCase()) ? 'selected' : ''}>${escapeHtml(t.name)}</option>`).join('')}
+            </select>
+          </div>
           <span>Lv. ${course.level || 1}</span>
         </div>
       `;
+
+      // Track dropdown in node footer
+      const trackSelect = el.querySelector('.ro-node-track-select');
+      if (trackSelect) {
+        trackSelect.addEventListener('mousedown', (e) => e.stopPropagation());
+        trackSelect.addEventListener('click', (e) => e.stopPropagation());
+        trackSelect.addEventListener('dblclick', (e) => e.stopPropagation());
+        trackSelect.addEventListener('change', (e) => {
+          const newTrackName = e.target.value;
+          course.track = newTrackName;
+          const matched = getAllTracks().find(t => t.name.toLowerCase() === newTrackName.toLowerCase());
+          if (matched) {
+            course.color = matched.color;
+          }
+          roSound.playClick();
+          saveToStorage();
+          render();
+        });
+      }
 
       // Inline Editing handlers
       const editableFields = el.querySelectorAll('[contenteditable="true"]');
@@ -2221,7 +2587,7 @@
 
       // Node Drag mousedown
       el.addEventListener('mousedown', (e) => {
-        if (e.target.classList.contains('ro-port') || e.target.getAttribute('contenteditable') === 'true') return;
+        if (e.target.classList.contains('ro-port') || e.target.getAttribute('contenteditable') === 'true' || e.target.closest('.ro-node-track-select-wrap')) return;
         if (e.button === 2) return;
 
         isDraggingNode = true;
@@ -3019,23 +3385,6 @@
        CONTEXT MENU (Right Click on Node)
        ================================================================= */
     function setupContextMenu() {
-      document.querySelectorAll('.ro-color-swatch').forEach(swatch => {
-        swatch.addEventListener('click', () => {
-          const color = swatch.getAttribute('data-color');
-          if (contextNodeId) {
-            const model = getCurrentTabModel();
-            const course = model.courses.find(c => c.id === contextNodeId);
-            if (course) {
-              course.color = color;
-              roSound.playClick();
-              saveToStorage();
-              render();
-            }
-          }
-          hideContextMenu();
-        });
-      });
-
       document.getElementById('menuEdit').addEventListener('click', () => {
         if (contextNodeId) openEditModal(contextNodeId);
         hideContextMenu();
@@ -3098,6 +3447,17 @@
       document.getElementById('btnModalClose').addEventListener('click', closeModal);
       document.getElementById('btnModalCancel').addEventListener('click', closeModal);
       document.getElementById('btnModalSave').addEventListener('click', saveModalCourse);
+
+      // Track change in modal: auto update preview
+      document.getElementById('modalCourseTrack').addEventListener('change', (e) => {
+        const val = e.target.value;
+        const tracks = getAllTracks();
+        const matched = tracks.find(t => t.name.toLowerCase() === val.toLowerCase());
+        const preview = document.getElementById('modalTrackColorPreview');
+        if (matched && preview) {
+          preview.style.background = matched.color;
+        }
+      });
     }
 
     function openAddModal() {
@@ -3107,8 +3467,21 @@
       document.getElementById('modalCourseCredits').value = '3(2-2-5)';
       document.getElementById('modalCourseNameTh').value = '';
       document.getElementById('modalCourseNameEn').value = '';
-      document.getElementById('modalCourseTrack').value = appState.activeTab === 'major' ? 'Network' : 'General';
-      document.getElementById('modalCourseColor').value = '#0284c7';
+
+      const tracks = getAllTracks();
+      const trackSelect = document.getElementById('modalCourseTrack');
+      trackSelect.innerHTML = tracks.map(t => `<option value="${escapeHtml(t.name)}">${escapeHtml(t.name)}</option>`).join('');
+
+      const defaultTrack = appState.activeTab === 'major'
+        ? (tracks.find(t => t.name.toLowerCase() === 'network') || tracks[0])
+        : (tracks.find(t => t.name.toLowerCase() === 'general') || tracks[0]);
+
+      if (defaultTrack) {
+        trackSelect.value = defaultTrack.name;
+        const preview = document.getElementById('modalTrackColorPreview');
+        if (preview) preview.style.background = defaultTrack.color;
+      }
+
       courseModal.classList.add('active');
     }
 
@@ -3118,13 +3491,23 @@
       if (!course) return;
 
       editingNodeId = id;
-      document.getElementById('modalTitle').innerText = '✏️ แก้ไขข้อมูลรายวิชา';
+      document.getElementById('modalTitle').innerText = `✏️ แก้ไขข้อมูลรายวิชา: ${course.code}`;
       document.getElementById('modalCourseCode').value = course.code || '';
       document.getElementById('modalCourseCredits').value = course.credits || '';
       document.getElementById('modalCourseNameTh').value = course.nameTh || '';
       document.getElementById('modalCourseNameEn').value = course.nameEn || '';
-      document.getElementById('modalCourseTrack').value = course.track || '';
-      document.getElementById('modalCourseColor').value = course.color || '#0284c7';
+
+      const tracks = getAllTracks();
+      const trackSelect = document.getElementById('modalCourseTrack');
+      trackSelect.innerHTML = tracks.map(t => `<option value="${escapeHtml(t.name)}" ${(t.name.toLowerCase() === (course.track || '').toLowerCase()) ? 'selected' : ''}>${escapeHtml(t.name)}</option>`).join('');
+
+      const matched = tracks.find(t => t.name.toLowerCase() === (course.track || '').toLowerCase()) || tracks[0];
+      if (matched) {
+        trackSelect.value = matched.name;
+        const preview = document.getElementById('modalTrackColorPreview');
+        if (preview) preview.style.background = matched.color;
+      }
+
       courseModal.classList.add('active');
     }
 
@@ -3138,8 +3521,11 @@
       const credits = document.getElementById('modalCourseCredits').value.trim() || '3(3-0-6)';
       const nameTh = document.getElementById('modalCourseNameTh').value.trim() || 'รายวิชาใหม่';
       const nameEn = document.getElementById('modalCourseNameEn').value.trim();
-      const track = document.getElementById('modalCourseTrack').value.trim() || 'Core';
-      const color = document.getElementById('modalCourseColor').value || '#0284c7';
+      const track = document.getElementById('modalCourseTrack').value || 'Core';
+
+      // Color is locked to the track color
+      const matchedTrack = getAllTracks().find(t => t.name.toLowerCase() === track.toLowerCase());
+      const color = matchedTrack ? matchedTrack.color : '#0284c7';
 
       const model = getCurrentTabModel();
 
