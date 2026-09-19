@@ -548,17 +548,16 @@
 
     svg.ro-connections-svg path.visible-line {
       pointer-events: none;
-      transition: stroke-width 0.15s, filter 0.15s;
+      transition: stroke-width 0.15s;
     }
 
     svg.ro-connections-svg g.conn-group:hover path.visible-line {
       stroke-width: 5px !important;
-      filter: drop-shadow(0 0 6px currentColor);
     }
 
     svg.ro-connections-svg g.conn-group.selected path.visible-line {
       stroke-width: 5.5px !important;
-      filter: drop-shadow(0 0 8px #ffd166) !important;
+      stroke: #ffd166 !important;
     }
 
     /* =========================================
@@ -1378,20 +1377,7 @@
           </div>
         </div>
 
-        <!-- Quick Guide -->
-        <div class="ro-box">
-          <div class="ro-box-title">
-            <span>💡 วิธีใช้งาน</span>
-          </div>
-          <div class="ro-guide-text">
-            <ul>
-              <li><strong>ลากเส้นเชื่อม:</strong> มีจุดเชื่อมต่อ 4 จุด (บน ล่าง ซ้าย ขวา) ลากจากจุดใดไปยังจุดใดก็ได้</li>
-              <li><strong>ปรับแต่งเส้น:</strong> คลิกที่เส้นเชื่อม เพื่อเลือกรูปแบบเส้นหรือสลับทิศทางลูกศรในแถบขวา</li>
-              <li><strong>เปลี่ยนสีวิชา:</strong> คลิกขวาที่กล่องวิชาเพื่อเลือกสีสายวิชา</li>
-              <li><strong>พิมพ์เปลี่ยนชื่อ:</strong> คลิกที่ชื่อหรือรหัสวิชาแล้วพิมพ์ได้ทันที</li>
-            </ul>
-          </div>
-        </div>
+
 
       </div>
     </aside>
@@ -1442,39 +1428,18 @@
           <path id="tempDragLine" d="" fill="none" stroke="#ffd166" stroke-width="3.5" stroke-dasharray="5,4" style="display: none;" />
         </svg>
 
-        <!-- Column 1: ระดับ 1 (พื้นฐาน) -->
+        <!-- Column 1 -->
         <div class="ro-col-lane" data-level="1">
-          <div class="ro-col-header">
-            <div>
-              <h3>🌱 ระดับ 1: วิชาพื้นฐาน (Foundation)</h3>
-              <p>ชั้นปีที่ 1 - 2 / ปูพื้นฐานความรู้เบื้องต้น</p>
-            </div>
-            <span class="col-badge">Level 1</span>
-          </div>
           <div class="ro-col-watermark">LV. 1</div>
         </div>
 
-        <!-- Column 2: ระดับ 2 (ปฏิบัติการ) -->
+        <!-- Column 2 -->
         <div class="ro-col-lane" data-level="2">
-          <div class="ro-col-header">
-            <div>
-              <h3>⚡ ระดับ 2: วิชาปฏิบัติการ (Intermediate)</h3>
-              <p>ชั้นปีที่ 2 - 3 / การประยุกต์และลงมือปฏิบัติ</p>
-            </div>
-            <span class="col-badge">Level 2</span>
-          </div>
           <div class="ro-col-watermark">LV. 2</div>
         </div>
 
-        <!-- Column 3: ระดับ 3 (ขั้นสูง & เชี่ยวชาญ) -->
+        <!-- Column 3 -->
         <div class="ro-col-lane" data-level="3">
-          <div class="ro-col-header">
-            <div>
-              <h3>👑 ระดับ 3: วิชาขั้นสูง (Advanced)</h3>
-              <p>ชั้นปีที่ 3 - 4 / ความเชี่ยวชาญเฉพาะทางและโปรเจกต์</p>
-            </div>
-            <span class="col-badge">Level 3</span>
-          </div>
           <div class="ro-col-watermark">LV. 3</div>
         </div>
 
@@ -1581,24 +1546,35 @@
         <h3>❓ คำแนะนำการใช้งานระบบผังวิชา Ragnarok</h3>
         <button class="ro-modal-close-btn" id="btnHelpModalClose">✕</button>
       </div>
-      <div class="ro-modal-body" style="font-size: 12px; line-height: 1.6; color: #334155;">
-        <h4 style="color: #0f172a; margin-bottom: 4px;">การเชื่อมโยงวิชา (4 จุด บน ล่าง ซ้าย ขวา):</h4>
-        <p>แต่ละกล่องรายวิชามีจุดเชื่อมต่อ 4 จุดรอบกล่อง สามารถลากเชื่อมโยงได้อิสระ:</p>
-        <ul style="padding-left: 20px; margin: 6px 0 12px 0;">
+      <div class="ro-modal-body" style="font-size: 12px; line-height: 1.6; color: #334155; max-height: 70vh; overflow-y: auto;">
+        
+        <!-- Section 1: Quick Guide -->
+        <div style="background: #f1f5f9; border-left: 3px solid #0284c7; padding: 10px 12px; border-radius: 4px; margin-bottom: 12px;">
+          <h4 style="color: #0f172a; margin-bottom: 4px; font-size: 13px;">💡 วิธีใช้งานด่วน (Quick Guide):</h4>
+          <ul style="padding-left: 18px; margin: 4px 0 0 0;">
+            <li><strong>ลากเส้นเชื่อม:</strong> แต่ละกล่องมีจุดเชื่อมต่อ 4 จุด (บน, ล่าง, ซ้าย, ขวา) ลากจากจุดใดไปยังจุดใดก็ได้</li>
+            <li><strong>ปรับแต่งเส้น & ลูกศร:</strong> คลิกที่เส้นเชื่อมโยง แถบด้านขวาจะเปิดขึ้นอัตโนมัติ เพื่อให้เลือกรูปแบบเส้นหรือสลับทิศทางลูกศร</li>
+            <li><strong>พิมพ์เปลี่ยนชื่อ:</strong> คลิกที่รหัสวิชาหรือชื่อวิชาแล้วพิมพ์แก้ไขได้ทันที (กด Enter หรือคลิกข้างนอกเพื่อบันทึก)</li>
+            <li><strong>เปลี่ยนสีสายวิชา:</strong> คลิกขวาที่กล่องวิชาเพื่อเลือกสีประจำสาย เช่น แดง (Network), ฟ้า (Cloud), ม่วง (IoT), เขียว (Software)</li>
+            <li><strong>ลากย้ายกล่อง:</strong> ลากกล่องวิชาไปวางในคอลัมน์ระดับ 1, 2, 3 ได้อย่างอิสระ</li>
+          </ul>
+        </div>
+
+        <!-- Section 2: Connection Lines -->
+        <h4 style="color: #0f172a; margin-bottom: 4px; font-size: 13px;">⚡ รูปแบบเส้น & ทิศทางลูกศร:</h4>
+        <p><strong>หัวลูกศรชี้เข้าสู่วิชาใด</strong> หมายความว่านักศึกษาต้องเรียนผ่านวิชาต้นทางก่อน ตามเงื่อนไขของรูปแบบเส้น:</p>
+        <ul style="padding-left: 18px; margin: 6px 0 12px 0;">
           <li><strong style="color: #0284c7;">1. เส้นทึบสีฟ้า:</strong> วิชาบังคับก่อนโดยตรง (AND Logic) ต้องสอบผ่านวิชาที่ลูกศรชี้มาทั้งหมดก่อน จึงจะลงเรียนวิชาปลายทางได้</li>
           <li><strong style="color: #ea580c;">2. เส้นประสีส้ม:</strong> คำแนะนำว่าควรเรียนต่อ (Advisory) ตามการออกแบบหลักสูตรที่ดี แต่ไม่ได้มีกฎบังคับระบบทะเบียน</li>
           <li><strong style="color: #10b981;">3. เส้นทึบสีเขียว:</strong> วิชาเลือกบังคับก่อน (OR Logic) หากมีหลายวิชาชี้เข้ามา นักศึกษาเลือกสอบผ่านวิชาใดวิชาหนึ่งก็สามารถลงเรียนวิชาถัดไปได้</li>
         </ul>
 
-        <h4 style="color: #0f172a; margin-bottom: 4px;">แถบจัดการเส้นทางขวา (Line Inspector):</h4>
-        <p>เมื่อคลิกที่เส้นเชื่อมใดๆ บนแผนผัง แถบด้านขวาจะแสดงตัวเลือกให้เปลี่ยนรูปแบบเส้น และกำหนดตำแหน่งหัวลูกศร (ชี้ไปข้างหน้า, สลับทิศทาง, หรือสองทิศทาง) ได้ทันที</p>
-
-        <h4 style="color: #0f172a; margin-top: 10px; margin-bottom: 4px;">ฟีเจอร์สำหรับอาจารย์:</h4>
-        <ul style="padding-left: 20px; margin: 6px 0;">
-          <li><strong>ลากย้ายกล่อง:</strong> คลิกและลากกล่องวิชาไปวางในคอลัมน์ระดับ 1, 2, 3 ได้อย่างอิสระ</li>
-          <li><strong>คลิกที่ข้อความ:</strong> พิมพ์เปลี่ยนชื่อวิชาหรือรหัสวิชาได้ทันที</li>
-          <li><strong>คลิกขวาที่กล่อง:</strong> เปิดเมนูเปลี่ยนสีสายวิชา, แก้ไข, หรือลบ</li>
-          <li><strong>สั่งพิมพ์ / PDF:</strong> ระบบซ่อนปุ่มและจัดเป็นแบบฟอร์ม A4 แนวนอนพร้อมสั่งพิมพ์ได้ทันที</li>
+        <!-- Section 3: Professor Tools -->
+        <h4 style="color: #0f172a; margin-bottom: 4px; font-size: 13px;">🖨️ เครื่องมือสำหรับอาจารย์:</h4>
+        <ul style="padding-left: 18px; margin: 4px 0 0 0;">
+          <li><strong>สั่งพิมพ์ / PDF:</strong> กดปุ่ม 🖨️ สั่งพิมพ์ / PDF เพื่อจัดหน้ากระดาษ A4 แนวนอนอัตโนมัติ โดยซ่อนเมนูและแถบเครื่องมือออก</li>
+          <li><strong>บันทึก / โหลดไฟล์:</strong> กดปุ่ม 💾 บันทึกไฟล์ หรือ 📂 โหลดไฟล์ (.json) เพื่อเก็บแผนผังหลักสูตรไว้แก้ไขต่อในอนาคต</li>
+          <li><strong>คืนค่าตัวอย่าง:</strong> กดปุ่ม 🔄 คืนค่าตัวอย่าง เพื่อโหลดผังตัวอย่างสาย Network และ Cloud</li>
         </ul>
       </div>
       <div class="ro-modal-footer">
@@ -2582,7 +2558,7 @@
           let newY = e.clientY - dragOffsetY - cRect.top;
 
           newX = Math.max(10, Math.min(newX, columnsContainer.offsetWidth - dragNodeEl.offsetWidth - 10));
-          newY = Math.max(70, Math.min(newY, columnsContainer.offsetHeight - dragNodeEl.offsetHeight - 20));
+          newY = Math.max(15, Math.min(newY, columnsContainer.offsetHeight - dragNodeEl.offsetHeight - 20));
 
           dragNodeEl.style.left = `${newX}px`;
           dragNodeEl.style.top = `${newY}px`;
